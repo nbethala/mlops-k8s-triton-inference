@@ -1,0 +1,16 @@
+# Terraform
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+
+# Kubernetes
+*.log
+*.out
+
+# OS / Editor
+.DS_Store
+*.swp
+EOF
+
+pemfile
+*.pem
