@@ -1,0 +1,51 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}"
+  namespace: "{{ .Release.Namespace }}"
+  labels:
+    app: triton
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: triton
+  template:
+    metadata:
+      labels:
+        app: triton
+    spec:
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+
+      nodeSelector:
+        {{- toYaml .Values.nodeSelector | nindent 8 }}
+
+      tolerations:
+        {{- toYaml .Values.tolerations | nindent 8 }}
+
+      containers:
+        - name: triton
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          ports:
+            - name: http
+              containerPort: {{ .Values.ports.http }}
+            - name: grpc
+              containerPort: {{ .Values.ports.grpc }}
+            - name: metrics
+              containerPort: {{ .Values.ports.metrics }}
+
+          resources:
+            limits:
+              {{- toYaml .Values.resources.limits | nindent 14 }}
+            requests:
+              {{- toYaml .Values.resources.requests | nindent 14 }}
+
+          volumeMounts:
+            - name: model-repo
+              mountPath: /models
+
+      initContainers:
+        - name: sync-models
+          image: amazon/aws-cli:2.16.19

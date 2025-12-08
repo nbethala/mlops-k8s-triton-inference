@@ -1,0 +1,17 @@
+# This integrates Triton metrics with Prometheus.
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: triton-servicemonitor
+  namespace: {{ .Release.Namespace }}
+  labels:
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: triton
+  endpoints:
+    - port: metrics
+      path: /metrics
+      interval: 15s

@@ -1,0 +1,50 @@
+# PrometheusRules declaratively defined for kube-prometheus-stack
+prometheusRule:
+  enabled: true
+  groups:
+    - name: triton-gpu.rules
+      rules:
+        - alert: GPUHighUtilization
+          expr: avg(nvidia_gpu_utilization) by (instance) > 85
+          for: 2m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High GPU Utilization on {{ $labels.instance }}"
+            description: "GPU > 85% for more than 2 minutes"
+
+        - alert: GPUMemoryHigh
+          expr: avg(nvidia_gpu_memory_used_bytes / nvidia_gpu_memory_total_bytes * 100) by (instance) > 85
+          for: 2m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High GPU Memory Usage"
+            description: "GPU memory > 85%"
+
+        - alert: TritonHighLatency
+          expr: histogram_quantile(0.95, sum(rate(triton_inference_request_duration_seconds_bucket[2m])) by (le)) > 1
+          for: 2m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Triton p95 latency > 1s"
+            description: "Triton p95 latency greater than 1 second"
+
+        - alert: TritonUnavailable
+          expr: absent(up{job="triton"})
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Triton is not reachable"
+            description: "Prometheus has no 'up' metric for Triton"
+
+        - alert: TritonOOMOccurred
+          expr: increase(kube_pod_container_status_terminated_reason{reason="OOMKilled"}[5m]) > 0
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            summary: "OOMKilled occurred on pod"
+            description: "At least one container OOMKilled in the last 5 minutes"

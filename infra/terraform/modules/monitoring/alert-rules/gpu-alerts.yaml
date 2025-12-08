@@ -1,0 +1,35 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: gpu-alerts
+  namespace: monitoring
+spec:
+  groups:
+    - name: gpu.alerts
+      rules:
+        - alert: GPUHighUtilization
+          expr: DCGM_FI_DEV_GPU_UTIL > 90
+          for: 2m
+          labels:
+            severity: warning
+          annotations:
+            summary: "GPU Util > 90%"
+            description: "High GPU load on {{ $labels.hostname }}"
+
+        - alert: GPUThrottling
+          expr: DCGM_FI_DEV_POWER_VIOLATION > 0
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            summary: "GPU Throttling Detected"
+            description: "GPU is thermal/power throttled."
+
+        - alert: GPUOOM
+          expr: DCGM_FI_DEV_FB_FREE < 500000  # ~500 MB
+          for: 2m
+          labels:
+            severity: critical
+          annotations:
+            summary: "GPU OOM Risk"
+            description: "Low GPU memory available."

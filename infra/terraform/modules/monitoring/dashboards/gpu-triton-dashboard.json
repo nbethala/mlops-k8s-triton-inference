@@ -1,0 +1,42 @@
+{
+  "annotations": { "list": [] },
+  "description": "GPU and Triton overview",
+  "title": "GPU & Triton Overview",
+  "panels": [
+    {
+      "type": "graph",
+      "title": "GPU Utilization (%)",
+      "targets": [
+        {
+          "expr": "avg(nvidia_gpu_utilization{cluster=\"$cluster\"}) by (instance)",
+          "legendFormat": "{{instance}}"
+        }
+      ],
+      "gridPos": {"h":8,"w":24,"x":0,"y":0}
+    },
+    {
+      "type": "graph",
+      "title": "GPU Memory Used (MiB)",
+      "targets": [
+        {
+          "expr": "avg(nvidia_gpu_memory_used_bytes/1024/1024) by (instance)",
+          "legendFormat": "{{instance}}"
+        }
+      ],
+      "gridPos": {"h":8,"w":24,"x":0,"y":8}
+    },
+    {
+      "type": "table",
+      "title": "Triton Model Status",
+      "targets": [
+        {
+          "expr":"triton_model_count",
+          "legendFormat":"models"
+        }
+      ],
+      "gridPos": {"h":4,"w":24,"x":0,"y":16}
+    }
+  ],
+  "schemaVersion": 16,
+  "version": 1
+}

@@ -1,0 +1,16 @@
+# This loads your model repository into the pod.
+# #It automatically includes all models under: services/triton/models/
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "triton.fullname" . }}-model-repo
+data:
+  config.pbtxt: |
+    platform: "ensemble"
+
+  # Inject each model folder into Triton
+  {{- range $path, $_ := .Files.Glob "models/**" }}
+  {{ base $path }}: |
+{{ $.Files.Get $path | indent 4 }}
+  {{- end }}

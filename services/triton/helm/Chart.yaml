@@ -1,0 +1,25 @@
+apiVersion: v2
+name: triton
+description: Triton Inference Server Helm Chart (GPU scheduling + IRSA + model init sidecar)
+type: application
+
+# Chart version (bump when you change chart templates)
+version: 0.1.0
+
+# App version (matches the Triton server release you deploy)
+appVersion: "2.42.0"
+
+home: https://github.com/triton-inference-server/server
+sources:
+  - https://github.com/triton-inference-server/server
+maintainers:
+  - name: YourTeam
+    email: your-team@example.com
+keywords:
+  - ai
+  - inference
+  - gpu
+  - nvidia
+  - triton
+annotations:
+  category: MachineLearning

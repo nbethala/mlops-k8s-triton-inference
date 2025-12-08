@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-triton-dashboard
+  namespace: monitoring
+  labels:
+    grafana_dashboard: "1"
+data:
+  triton-dashboard.json: |
+    {{ .Files.Get "dashboards/triton-metrics.json" | nindent 4 }}

@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: triton
+  namespace: inference
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: triton
+  template:
+    metadata:
+      labels:
+        app: triton
+    spec:
+      containers:
+        - name: triton
+          image: 478253497479.dkr.ecr.us-east-1.amazonaws.com/triton:latest
+          imagePullPolicy: Always
+          args: ["tritonserver", "--model-repository=/models"]
+
+          ports:
+            - containerPort: 8000 # HTTP
+            - containerPort: 8001 # gRPC
+            - containerPort: 8002 # Metrics
+
+          volumeMounts:
+            - name: model-repo
+              mountPath: /models
+
+      volumes:
+        - name: model-repo
+          persistentVolumeClaim:
+            claimName: triton-models-pvc

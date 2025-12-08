@@ -1,0 +1,20 @@
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="//"
+
+--//
+Content-Type: application/node.eks.aws
+
+apiVersion: node.eks.aws/v1alpha1
+kind: NodeConfig
+spec:
+  cluster:
+    name: triton-gpu-cluster
+    apiServerEndpoint: https://<paste-cluster-endpoint>
+    certificateAuthority: <paste-base64-ca>
+  kubelet:
+    flags:
+      - --node-labels=nvidia.com/gpu=true
+    config:
+      clusterDNS:
+        - 10.100.0.10
+--//

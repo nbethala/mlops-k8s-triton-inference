@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-gpu-dashboard
+  namespace: monitoring
+  labels:
+    grafana_dashboard: "1"    # Required for sidecar loader
+data:
+  gpu-dashboard.json: |
+    {{ .Files.Get "dashboards/gpu.json" | nindent 4 }}

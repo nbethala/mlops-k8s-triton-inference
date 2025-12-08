@@ -1,0 +1,12 @@
+# Grafana Helm release user values
+adminUser: admin
+adminPassword: "" # set via Kubernetes secret or external store
+persistence:
+  enabled: false
+sidecar:
+  dashboards:
+    enabled: true
+    label: grafana_dashboard
+    folder: /var/lib/grafana/dashboards
+  datasources:
+    enabled: true

@@ -1,0 +1,14 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    { "Effect": "Allow", "Action": ["eks:*"], "Resource": "*" },
+    { "Effect": "Allow", "Action": ["ec2:Describe*","ec2:CreateTags","ec2:DeleteTags"], "Resource": "*" },
+    { "Effect": "Allow", "Action": ["iam:PassRole","iam:GetRole","iam:ListRolePolicies","iam:CreateServiceLinkedRole"], "Resource": "*" },
+    { "Effect": "Allow", "Action": ["ecr:*"], "Resource": "*" },
+    { "Effect": "Allow", "Action": ["s3:*"], "Resource": "*" },
+    { "Effect": "Allow", "Action": ["cloudformation:*"], "Resource": "*" },
+    { "Effect": "Allow", "Action": ["elasticloadbalancing:*"], "Resource": "*" },
+    { "Effect": "Allow", "Action": ["logs:*"], "Resource": "*" },
+    { "Effect": "Allow", "Action": ["route53:ListHostedZonesByName","route53:GetHostedZone","route53:ListTagsForResource"], "Resource": "*" }
+  ]
+}
