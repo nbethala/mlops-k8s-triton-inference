@@ -8,13 +8,18 @@ apiVersion: node.eks.aws/v1alpha1
 kind: NodeConfig
 spec:
   cluster:
-    name: triton-gpu-cluster
-    apiServerEndpoint: https://<paste-cluster-endpoint>
-    certificateAuthority: <paste-base64-ca>
+    name: ${module.eks.cluster_name}
+    apiServerEndpoint: ${module.eks.cluster_endpoint}
+    certificateAuthority: ${module.eks.cluster_ca_certificate}
   kubelet:
     flags:
       - --node-labels=nvidia.com/gpu=true
     config:
       clusterDNS:
         - 10.100.0.10
+  bootstrap:
+    additionalSystemdUnits:
+      - name: amazon-ssm-agent.service
+        enable: true
+        command: start
 --//

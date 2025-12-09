@@ -1,13 +1,13 @@
 # =================================================
 # Data sources: query live EKS cluster info
 # =================================================
-# data "aws_eks_cluster" "main" {
-#  name = aws_eks_cluster.gpu_e2e.name
-#}
+ data "aws_eks_cluster" "main" {
+  name = aws_eks_cluster.gpu_e2e.name
+}
 
-# data "aws_eks_cluster_auth" "main" {
-#  name = aws_eks_cluster.gpu_e2e.name
-#}
+ data "aws_eks_cluster_auth" "main" {
+  name = aws_eks_cluster.gpu_e2e.name
+}
 
 # =================================================
 # Helm provider configured against the EKS cluster
@@ -42,11 +42,11 @@ resource "aws_eks_cluster" "gpu_e2e" {
 # Kubernetes provider configured against the EKS cluster
 # =================================================
 
-#provider "kubernetes" {
-#  host                   = data.aws_eks_cluster.main.endpoint
-#  cluster_ca_certificate = base64decode(data.aws_eks_cluster.main.certificate_authority[0].data)
-#  token                  = data.aws_eks_cluster_auth.main.token
-#}
+provider "kubernetes" {
+  host                   = data.aws_eks_cluster.main.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.main.certificate_authority[0].data)
+  token                  = data.aws_eks_cluster_auth.main.token
+}
 
 # =================================================
 # aws-auth ConfigMap: map IAM roles into Kubernetes RBAC

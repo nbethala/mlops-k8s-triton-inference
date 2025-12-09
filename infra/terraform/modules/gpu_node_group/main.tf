@@ -37,5 +37,10 @@ resource "aws_launch_template" "gpu_nodes" {
   name_prefix            = "gpu-node-"
   update_default_version = true
 
+   metadata_options {
+    http_endpoint = "enabled"
+    http_tokens   = "required"
+  }
+
   user_data = base64encode(file("${path.module}/userdata-nodeadm.yaml"))
 }

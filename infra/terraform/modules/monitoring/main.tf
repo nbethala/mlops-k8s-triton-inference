@@ -14,11 +14,11 @@ terraform {
 # -----------------------------------------------------
 # 1. Namespace: monitoring
 # -----------------------------------------------------
-#resource "kubernetes_namespace" "monitoring_ns" {
-#  metadata {
-#    name = var.namespace
-#  }
-#}
+resource "kubernetes_namespace" "monitoring_ns" {
+  metadata {
+    name = var.namespace
+  }
+}
 
 # -----------------------------------------------------
 # 2. Install Prometheus via Helm (including CRDs)
