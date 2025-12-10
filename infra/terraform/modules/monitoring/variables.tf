@@ -4,10 +4,10 @@ variable "namespace" {
   default     = "monitoring"
 }
 
-variable "cluster_name" {
-  description = "EKS cluster name (for kubeconfig references if needed)"
-  type        = string
-}
+#variable "cluster_name" {
+#  description = "EKS cluster name (for kubeconfig references if needed)"
+#  type        = string
+#}
 
 variable "prometheus_chart_version" {
   description = "Optional pinned chart version for kube-prometheus-stack"
@@ -19,6 +19,11 @@ variable "grafana_chart_version" {
   description = "Optional pinned chart version for grafana"
   type        = string
   default     = "9.5.1" # adjust to a compatible chart
+}
+
+variable "eks_cluster_name" {
+  type        = string
+  description = "EKS cluster name"
 }
 
 # -----------------------------------------------------

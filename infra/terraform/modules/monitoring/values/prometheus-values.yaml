@@ -1,4 +1,30 @@
-# PrometheusRules declaratively defined for kube-prometheus-stack
+# Prometheus Helm release user values
+prometheus:
+  prometheusSpec:
+    # Schedule on GPU nodes
+    nodeSelector:
+      accelerator: nvidia
+    tolerations:
+      - key: "gpu"
+        operator: "Exists"
+        effect: "NoSchedule"
+    # Minimal resources for single GPU node
+    resources:
+      requests:
+        cpu: "250m"
+        memory: "512Mi"
+      limits:
+        cpu: "500m"
+        memory: "1Gi"
+    # Optional: small storage
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 1Gi
+
 prometheusRule:
   enabled: true
   groups:

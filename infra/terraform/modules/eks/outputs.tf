@@ -31,3 +31,7 @@ output "oidc_provider_sub" {
 output "oidc_provider_url" {
   value = aws_eks_cluster.gpu_e2e.identity[0].oidc[0].issuer
 }
+
+output "cluster_security_group_id" {
+  value = aws_eks_cluster.gpu_e2e.vpc_config[0].cluster_security_group_id
+}

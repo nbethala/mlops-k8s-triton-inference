@@ -48,3 +48,6 @@ common_tags = {
   project = "triton-mlops"
   env     = "dev"
 }
+
+eks_cluster_name = "triton-gpu-cluster"
+namespace        = "monitoring"

@@ -1,8 +1,28 @@
 # Grafana Helm release user values
 adminUser: admin
 adminPassword: "" # set via Kubernetes secret or external store
+
+# Schedule on GPU nodes
+nodeSelector:
+  accelerator: nvidia
+
+tolerations:
+  - key: "gpu"
+    operator: "Exists"
+    effect: "NoSchedule"
+
+# Minimal resources for single GPU node
+resources:
+  requests:
+    cpu: "100m"
+    memory: "256Mi"
+  limits:
+    cpu: "250m"
+    memory: "512Mi"
+
 persistence:
   enabled: false
+
 sidecar:
   dashboards:
     enabled: true

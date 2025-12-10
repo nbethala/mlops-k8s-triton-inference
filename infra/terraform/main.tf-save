@@ -144,18 +144,21 @@ data "aws_eks_cluster_auth" "main" {
   name = module.eks.cluster_name
 }
 
-
 # ======================================================
 # Prometheus + Grafana provisioning
 # ======================================================
-  module "monitoring" {
+module "monitoring" {
   source       = "./modules/monitoring"
-  eks_cluster_name = module.eks.cluster_name
+  cluster_name = module.eks.cluster_name
   namespace    = "monitoring"
 
-  prometheus_chart_version = "61.2.0"  # or override here
-  grafana_chart_version    = "6.57.4"  # or override here
+  # optionally override chart versions
+  prometheus_chart_version = "47.7.0"
+  grafana_chart_version    = "9.5.1"
 
-  }
-
-  #depends_on = [module.eks] # ensures cluster is ready first
+#  providers = {
+#    kubernetes = kubernetes.eks
+#    helm       = helm
+#  }
+#  depends_on = [module.eks] # ensures cluster is ready first
+}

@@ -29,3 +29,26 @@ variable "node_role_arn" {
   type        = string
 
 }
+
+variable "cluster_endpoint" { 
+   type = string 
+}
+
+variable "cluster_ca" { 
+   type = string 
+}
+
+variable "node_sg_id" {
+  type = string
+}
+
+variable "ssh_key_name" {
+  description = "EC2 Key Pair name for SSH access to GPU nodes"
+  type        = string
+}
+
+variable "node_instance_profile" {
+  description = "IAM instance profile name attached to GPU nodes"
+  type        = string
+}
+
