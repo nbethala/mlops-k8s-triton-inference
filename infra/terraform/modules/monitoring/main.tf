@@ -44,8 +44,10 @@ resource "helm_release" "prometheus" {
     { name = "tolerations[0].key", value = "gpu" },
     { name = "tolerations[0].operator", value = "Exists" },
     { name = "tolerations[0].effect", value = "NoSchedule" },
-    { name = "prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.accessModes[0]", value = "ReadWriteOnce" },
-    { name = "prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.resources.requests.storage", value = "1Gi" }
+
+    # ✅ Use emptyDir instead of PVC
+    { name = "prometheus.prometheusSpec.storageSpec.emptyDir.sizeLimit", value = "2Gi" }
+
   ]
 
   values = [
@@ -122,11 +124,12 @@ resource "kubernetes_config_map" "grafana_dashboards" {
 # 6. NVIDIA DCGM GPU Exporter
 # -----------------------------------------------------
 resource "helm_release" "nvidia_dcgm" {
-  provider = helm
+  provider   = helm
   name       = "dcgm-exporter"
-  repository = "https://nvidia.github.io/dcgm-exporter/helm-charts/"
+  repository = "https://nvidia.github.io/dcgm-exporter/helm-charts"
   chart      = "dcgm-exporter"
   version    = "4.6.0"
+  namespace  = var.namespace
 
   set = [
     { name = "serviceMonitor.enabled", value = "true" },

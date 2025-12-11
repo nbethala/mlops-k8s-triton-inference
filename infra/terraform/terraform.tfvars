@@ -40,6 +40,9 @@ eks_cluster_arns = ["arn:aws:eks:us-east-1:478253497479:cluster/mlops-gpu-eks"]
 
 node_role_arns = []
 
+nodegroup_role_arn = "arn:aws:iam::478253497479:role/triton-gpu-cluster-node-role"
+
+
 # -------------------------
 # Tags
 # -------------------------

@@ -55,6 +55,11 @@ module "eks" {
 
   # Pass the nodegroup role ARN from IAM module
   nodegroup_role_arn = module.iam.eks_nodegroup_role_arn
+
+    providers = {
+    kubernetes = kubernetes.eks
+    helm       = helm.eks
+  }
 }
 
 ##############################################
@@ -85,9 +90,15 @@ module "gpu_node_group" {
 ##############################################
 module "nvidia_plugin" {
   source = "./modules/nvidia_plugin"
+
   providers = {
-    helm = helm
+    helm = helm.eks
   }
+
+  depends_on = [
+    module.eks,
+    module.gpu_node_group
+  ]
 }
 
 ################################################
@@ -156,6 +167,28 @@ data "aws_eks_cluster_auth" "main" {
   prometheus_chart_version = "61.2.0"  # or override here
   grafana_chart_version    = "6.57.4"  # or override here
 
+   
+  providers = {
+    kubernetes = kubernetes.eks # from provider.tf
+    helm       = helm.eks       # from provider.tf
+  }
+    depends_on = [
+    module.eks,
+    module.gpu_node_group,        # ensures GPU nodes exist
+    module.nvidia_plugin          # GPU device plugin
+  ]
+}
+
+# ======================================================
+# AWS Auth for RBAC 
+# =======================================================
+module "aws_auth" {
+  source = "./modules/aws_auth"
+
+  providers = {
+    kubernetes = kubernetes.eks
   }
 
-  #depends_on = [module.eks] # ensures cluster is ready first
+  github_actions_role_arn = "arn:aws:iam::478253497479:role/triton-mlops-github-actions-oidc-role"
+  nodegroup_role_arn      = var.nodegroup_role_arn
+}

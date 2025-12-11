@@ -119,3 +119,19 @@ variable "eks_oidc_provider" {
   description = "Issuer string (without https://) for IRSA condition keys"
   type        = string
 }
+
+variable "eks_cluster_name" {
+  type        = string
+  description = "Name of the EKS cluster"
+}
+
+variable "namespace" {
+  type        = string
+  description = "Namespace for monitoring resources"
+  default     = "monitoring"
+}
+
+variable "nodegroup_role_arn" {
+   type       = string
+
+} 

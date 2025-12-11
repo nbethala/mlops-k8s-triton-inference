@@ -1,0 +1,3420 @@
+{
+  "version": 4,
+  "terraform_version": "1.14.0",
+  "serial": 620,
+  "lineage": "51c6081f-be2d-94a8-bc82-0b7cf49c9a27",
+  "outputs": {
+    "ecr_repo_url": {
+      "value": "478253497479.dkr.ecr.us-east-1.amazonaws.com/triton-infer",
+      "type": "string"
+    },
+    "eks_cluster_endpoint": {
+      "value": "https://45AC449D4AC1C6CD4F0527CE7410BAEF.gr7.us-east-1.eks.amazonaws.com",
+      "type": "string"
+    },
+    "eks_cluster_name": {
+      "value": "triton-gpu-cluster",
+      "type": "string"
+    },
+    "eks_cluster_role_arn": {
+      "value": "arn:aws:iam::478253497479:role/triton-gpu-cluster-eks-cluster-role",
+      "type": "string"
+    },
+    "github_actions_role_arn": {
+      "value": "arn:aws:iam::478253497479:role/triton-mlops-github-actions-oidc-role",
+      "type": "string"
+    },
+    "private_subnet_ids": {
+      "value": [
+        "subnet-0c64c62aac43a092d",
+        "subnet-02312a6c371b62eed"
+      ],
+      "type": [
+        "tuple",
+        [
+          "string",
+          "string"
+        ]
+      ]
+    },
+    "vpc_id": {
+      "value": "vpc-0817b1b310e7ffc4c",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "mode": "data",
+      "type": "aws_caller_identity",
+      "name": "current",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "account_id": "478253497479",
+            "arn": "arn:aws:iam::478253497479:user/nancy-devops",
+            "id": "478253497479",
+            "user_id": "AIDAW6WRBHSDSMMLDGBY3"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_eks_cluster",
+      "name": "cluster",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "access_config": [
+              {
+                "authentication_mode": "CONFIG_MAP",
+                "bootstrap_cluster_creator_admin_permissions": true
+              }
+            ],
+            "arn": "arn:aws:eks:us-east-1:478253497479:cluster/triton-gpu-cluster",
+            "certificate_authority": [
+              {
+                "data": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJZlFrclUwVDJuZDR3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TlRFeU1UQXdNVFEwTkRaYUZ3MHpOVEV5TURnd01UUTVORFphTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURQMDR1dXVaZm1OWFhiWStqaVdrYUgwUmdwc1BxVXhiVUdMNlZLaDQ5SEIwbEpVc3NjeEdZSmk4RG4KL1NkRVNrK25Ka0kxQnVaQWNwUVlYaW90M1NvdHNCY21LdzJZV2JTSU1ZVUtyNjlDSkx3TVJ6MzlVanlFVDVoYQp4SGQzaDFZNm1xSWhsRXdXeXo4NDBBSXZDZmozdEdoRDl6ZWZBZ1hrbVJMbTExV1JIMU9KZUhNbTBldTQxT2ZJCmJvcWlYVWpCdlJCNkExQjJldERRRERhc0MvK0lGbkxES1NMRnNZQmtTbEFYRmtMQVlKOEJFK3VKbmFPUmZCblcKeC9NWFExRzV2N0tTZmp2WVZzM1ZkSjRydUt0SVg4TkZ6MDVMWU9tWS9OVURKVWZZY1k0UURaL21wL045RFpTQwpzS3Q0SElnQnd0ODNUUnhUYW1KejgwNWg2NVFaQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJSSHArYU5HRkpqb21uSXp0SWVLNzBPTVk0ZDNqQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQVhYaFJxZTRhUApXTTloc2cycmZEcFRHQUVnaEo1T29YWFdrcTlwbGNmQ3BnYjY0eEVZTjJCVDkydlZrVEZpSTlBTWxXM09YWDFyCk8xRVlBNHh5U3VmNzducUx6c29SeWdhTnk1OHNtUHZrZkpCMHB0Zldudk9DUjZqWUhMeEVSR2RiZEJoWHF5bDAKaFRkVlBEKzJzMTZQMHJzU3hYVkZKT1lFSUtHTEVvQktocWpsUTRxcGl0Zy9Sa05qeVkzYUVXNkxqK2lIcEE5agpzbTJxTjJEMm9DVHNpc3U0czlweHJkQUpVdW9IOW52dGJmQ1pCUFJLU0ZhcXpIalJaa09ia1oxQlhYRThUdGdwCk1PYUtUbFB1MFM5cVBPQ1d1MmRkQllDbTFPYVEwMTllSVdkcEhpcWd0YUpVcDE5bzE5ZGdESFpLVnBDcHJZS2kKRlNwL3pXUFZSR0dvCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
+              }
+            ],
+            "cluster_id": null,
+            "compute_config": [
+              {
+                "enabled": false,
+                "node_pools": [],
+                "node_role_arn": ""
+              }
+            ],
+            "control_plane_scaling_config": [
+              {
+                "tier": "standard"
+              }
+            ],
+            "created_at": "2025-12-10T01:44:12Z",
+            "deletion_protection": false,
+            "enabled_cluster_log_types": [],
+            "endpoint": "https://45AC449D4AC1C6CD4F0527CE7410BAEF.gr7.us-east-1.eks.amazonaws.com",
+            "id": "triton-gpu-cluster",
+            "identity": [
+              {
+                "oidc": [
+                  {
+                    "issuer": "https://oidc.eks.us-east-1.amazonaws.com/id/45AC449D4AC1C6CD4F0527CE7410BAEF"
+                  }
+                ]
+              }
+            ],
+            "kubernetes_network_config": [
+              {
+                "elastic_load_balancing": [
+                  {
+                    "enabled": false
+                  }
+                ],
+                "ip_family": "ipv4",
+                "service_ipv4_cidr": "172.20.0.0/16",
+                "service_ipv6_cidr": ""
+              }
+            ],
+            "name": "triton-gpu-cluster",
+            "outpost_config": [],
+            "platform_version": "eks.9",
+            "region": "us-east-1",
+            "remote_network_config": [],
+            "role_arn": "arn:aws:iam::478253497479:role/triton-gpu-cluster-eks-cluster-role",
+            "status": "ACTIVE",
+            "storage_config": [
+              {
+                "block_storage": [
+                  {
+                    "enabled": false
+                  }
+                ]
+              }
+            ],
+            "tags": {
+              "Name": "triton-gpu-cluster",
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "upgrade_policy": [
+              {
+                "support_type": "EXTENDED"
+              }
+            ],
+            "version": "1.34",
+            "vpc_config": [
+              {
+                "cluster_security_group_id": "sg-0a16473fd1b1739e1",
+                "endpoint_private_access": false,
+                "endpoint_public_access": true,
+                "public_access_cidrs": [
+                  "0.0.0.0/0"
+                ],
+                "security_group_ids": [],
+                "subnet_ids": [
+                  "subnet-02312a6c371b62eed",
+                  "subnet-0c64c62aac43a092d"
+                ],
+                "vpc_id": "vpc-0817b1b310e7ffc4c"
+              }
+            ],
+            "zonal_shift_config": []
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_eks_cluster_auth",
+      "name": "cluster",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "triton-gpu-cluster",
+            "name": "triton-gpu-cluster",
+            "region": "us-east-1",
+            "token": "k8s-aws-v1.aHR0cHM6Ly9zdHMudXMtZWFzdC0xLmFtYXpvbmF3cy5jb20vP0FjdGlvbj1HZXRDYWxsZXJJZGVudGl0eSZWZXJzaW9uPTIwMTEtMDYtMTUmWC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVzZXUkJIU0Q1UE1EM0pYUSUyRjIwMjUxMjEwJTJGdXMtZWFzdC0xJTJGc3RzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNTEyMTBUMDI0MDQ4WiZYLUFtei1FeHBpcmVzPTAmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JTNCeC1rOHMtYXdzLWlkJlgtQW16LVNpZ25hdHVyZT03YWQ2OGZhODRhY2Q0MTIxMGQ0ZGY2NmFlMDI5NzMxMmVkMTNjMjlkOGI4ODhhYWNhMWZlNTZlYTIyOTEzNjQ5"
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "token"
+              }
+            ]
+          ],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "module": "module.ecr",
+      "mode": "managed",
+      "type": "aws_ecr_repository",
+      "name": "triton",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecr:us-east-1:478253497479:repository/triton-infer",
+            "encryption_configuration": [
+              {
+                "encryption_type": "AES256",
+                "kms_key": ""
+              }
+            ],
+            "force_delete": null,
+            "id": "triton-infer",
+            "image_scanning_configuration": [
+              {
+                "scan_on_push": true
+              }
+            ],
+            "image_tag_mutability": "MUTABLE",
+            "image_tag_mutability_exclusion_filter": [],
+            "name": "triton-infer",
+            "region": "us-east-1",
+            "registry_id": "478253497479",
+            "repository_url": "478253497479.dkr.ecr.us-east-1.amazonaws.com/triton-infer",
+            "tags": {
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "tags_all": {
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "name": "triton-infer",
+            "region": "us-east-1"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        }
+      ]
+    },
+    {
+      "module": "module.eks",
+      "mode": "data",
+      "type": "aws_eks_cluster",
+      "name": "main",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "access_config": [
+              {
+                "authentication_mode": "CONFIG_MAP",
+                "bootstrap_cluster_creator_admin_permissions": true
+              }
+            ],
+            "arn": "arn:aws:eks:us-east-1:478253497479:cluster/triton-gpu-cluster",
+            "certificate_authority": [
+              {
+                "data": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJZlFrclUwVDJuZDR3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TlRFeU1UQXdNVFEwTkRaYUZ3MHpOVEV5TURnd01UUTVORFphTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURQMDR1dXVaZm1OWFhiWStqaVdrYUgwUmdwc1BxVXhiVUdMNlZLaDQ5SEIwbEpVc3NjeEdZSmk4RG4KL1NkRVNrK25Ka0kxQnVaQWNwUVlYaW90M1NvdHNCY21LdzJZV2JTSU1ZVUtyNjlDSkx3TVJ6MzlVanlFVDVoYQp4SGQzaDFZNm1xSWhsRXdXeXo4NDBBSXZDZmozdEdoRDl6ZWZBZ1hrbVJMbTExV1JIMU9KZUhNbTBldTQxT2ZJCmJvcWlYVWpCdlJCNkExQjJldERRRERhc0MvK0lGbkxES1NMRnNZQmtTbEFYRmtMQVlKOEJFK3VKbmFPUmZCblcKeC9NWFExRzV2N0tTZmp2WVZzM1ZkSjRydUt0SVg4TkZ6MDVMWU9tWS9OVURKVWZZY1k0UURaL21wL045RFpTQwpzS3Q0SElnQnd0ODNUUnhUYW1KejgwNWg2NVFaQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJSSHArYU5HRkpqb21uSXp0SWVLNzBPTVk0ZDNqQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQVhYaFJxZTRhUApXTTloc2cycmZEcFRHQUVnaEo1T29YWFdrcTlwbGNmQ3BnYjY0eEVZTjJCVDkydlZrVEZpSTlBTWxXM09YWDFyCk8xRVlBNHh5U3VmNzducUx6c29SeWdhTnk1OHNtUHZrZkpCMHB0Zldudk9DUjZqWUhMeEVSR2RiZEJoWHF5bDAKaFRkVlBEKzJzMTZQMHJzU3hYVkZKT1lFSUtHTEVvQktocWpsUTRxcGl0Zy9Sa05qeVkzYUVXNkxqK2lIcEE5agpzbTJxTjJEMm9DVHNpc3U0czlweHJkQUpVdW9IOW52dGJmQ1pCUFJLU0ZhcXpIalJaa09ia1oxQlhYRThUdGdwCk1PYUtUbFB1MFM5cVBPQ1d1MmRkQllDbTFPYVEwMTllSVdkcEhpcWd0YUpVcDE5bzE5ZGdESFpLVnBDcHJZS2kKRlNwL3pXUFZSR0dvCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
+              }
+            ],
+            "cluster_id": null,
+            "compute_config": [
+              {
+                "enabled": false,
+                "node_pools": [],
+                "node_role_arn": ""
+              }
+            ],
+            "control_plane_scaling_config": [
+              {
+                "tier": "standard"
+              }
+            ],
+            "created_at": "2025-12-10T01:44:12Z",
+            "deletion_protection": false,
+            "enabled_cluster_log_types": [],
+            "endpoint": "https://45AC449D4AC1C6CD4F0527CE7410BAEF.gr7.us-east-1.eks.amazonaws.com",
+            "id": "triton-gpu-cluster",
+            "identity": [
+              {
+                "oidc": [
+                  {
+                    "issuer": "https://oidc.eks.us-east-1.amazonaws.com/id/45AC449D4AC1C6CD4F0527CE7410BAEF"
+                  }
+                ]
+              }
+            ],
+            "kubernetes_network_config": [
+              {
+                "elastic_load_balancing": [
+                  {
+                    "enabled": false
+                  }
+                ],
+                "ip_family": "ipv4",
+                "service_ipv4_cidr": "172.20.0.0/16",
+                "service_ipv6_cidr": ""
+              }
+            ],
+            "name": "triton-gpu-cluster",
+            "outpost_config": [],
+            "platform_version": "eks.9",
+            "region": "us-east-1",
+            "remote_network_config": [],
+            "role_arn": "arn:aws:iam::478253497479:role/triton-gpu-cluster-eks-cluster-role",
+            "status": "ACTIVE",
+            "storage_config": [
+              {
+                "block_storage": [
+                  {
+                    "enabled": false
+                  }
+                ]
+              }
+            ],
+            "tags": {
+              "Name": "triton-gpu-cluster",
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "upgrade_policy": [
+              {
+                "support_type": "EXTENDED"
+              }
+            ],
+            "version": "1.34",
+            "vpc_config": [
+              {
+                "cluster_security_group_id": "sg-0a16473fd1b1739e1",
+                "endpoint_private_access": false,
+                "endpoint_public_access": true,
+                "public_access_cidrs": [
+                  "0.0.0.0/0"
+                ],
+                "security_group_ids": [],
+                "subnet_ids": [
+                  "subnet-02312a6c371b62eed",
+                  "subnet-0c64c62aac43a092d"
+                ],
+                "vpc_id": "vpc-0817b1b310e7ffc4c"
+              }
+            ],
+            "zonal_shift_config": []
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "module": "module.eks",
+      "mode": "data",
+      "type": "aws_eks_cluster_auth",
+      "name": "main",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "triton-gpu-cluster",
+            "name": "triton-gpu-cluster",
+            "region": "us-east-1",
+            "token": "k8s-aws-v1.aHR0cHM6Ly9zdHMudXMtZWFzdC0xLmFtYXpvbmF3cy5jb20vP0FjdGlvbj1HZXRDYWxsZXJJZGVudGl0eSZWZXJzaW9uPTIwMTEtMDYtMTUmWC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVzZXUkJIU0Q1UE1EM0pYUSUyRjIwMjUxMjEwJTJGdXMtZWFzdC0xJTJGc3RzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNTEyMTBUMDI0MDQ4WiZYLUFtei1FeHBpcmVzPTAmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JTNCeC1rOHMtYXdzLWlkJlgtQW16LVNpZ25hdHVyZT03YWQ2OGZhODRhY2Q0MTIxMGQ0ZGY2NmFlMDI5NzMxMmVkMTNjMjlkOGI4ODhhYWNhMWZlNTZlYTIyOTEzNjQ5"
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "token"
+              }
+            ]
+          ],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "module": "module.eks",
+      "mode": "managed",
+      "type": "aws_eks_cluster",
+      "name": "gpu_e2e",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "access_config": [
+              {
+                "authentication_mode": "CONFIG_MAP",
+                "bootstrap_cluster_creator_admin_permissions": true
+              }
+            ],
+            "arn": "arn:aws:eks:us-east-1:478253497479:cluster/triton-gpu-cluster",
+            "bootstrap_self_managed_addons": true,
+            "certificate_authority": [
+              {
+                "data": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJZlFrclUwVDJuZDR3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TlRFeU1UQXdNVFEwTkRaYUZ3MHpOVEV5TURnd01UUTVORFphTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURQMDR1dXVaZm1OWFhiWStqaVdrYUgwUmdwc1BxVXhiVUdMNlZLaDQ5SEIwbEpVc3NjeEdZSmk4RG4KL1NkRVNrK25Ka0kxQnVaQWNwUVlYaW90M1NvdHNCY21LdzJZV2JTSU1ZVUtyNjlDSkx3TVJ6MzlVanlFVDVoYQp4SGQzaDFZNm1xSWhsRXdXeXo4NDBBSXZDZmozdEdoRDl6ZWZBZ1hrbVJMbTExV1JIMU9KZUhNbTBldTQxT2ZJCmJvcWlYVWpCdlJCNkExQjJldERRRERhc0MvK0lGbkxES1NMRnNZQmtTbEFYRmtMQVlKOEJFK3VKbmFPUmZCblcKeC9NWFExRzV2N0tTZmp2WVZzM1ZkSjRydUt0SVg4TkZ6MDVMWU9tWS9OVURKVWZZY1k0UURaL21wL045RFpTQwpzS3Q0SElnQnd0ODNUUnhUYW1KejgwNWg2NVFaQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJSSHArYU5HRkpqb21uSXp0SWVLNzBPTVk0ZDNqQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQVhYaFJxZTRhUApXTTloc2cycmZEcFRHQUVnaEo1T29YWFdrcTlwbGNmQ3BnYjY0eEVZTjJCVDkydlZrVEZpSTlBTWxXM09YWDFyCk8xRVlBNHh5U3VmNzducUx6c29SeWdhTnk1OHNtUHZrZkpCMHB0Zldudk9DUjZqWUhMeEVSR2RiZEJoWHF5bDAKaFRkVlBEKzJzMTZQMHJzU3hYVkZKT1lFSUtHTEVvQktocWpsUTRxcGl0Zy9Sa05qeVkzYUVXNkxqK2lIcEE5agpzbTJxTjJEMm9DVHNpc3U0czlweHJkQUpVdW9IOW52dGJmQ1pCUFJLU0ZhcXpIalJaa09ia1oxQlhYRThUdGdwCk1PYUtUbFB1MFM5cVBPQ1d1MmRkQllDbTFPYVEwMTllSVdkcEhpcWd0YUpVcDE5bzE5ZGdESFpLVnBDcHJZS2kKRlNwL3pXUFZSR0dvCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
+              }
+            ],
+            "cluster_id": null,
+            "compute_config": [
+              {
+                "enabled": false,
+                "node_pools": [],
+                "node_role_arn": ""
+              }
+            ],
+            "control_plane_scaling_config": [
+              {
+                "tier": "standard"
+              }
+            ],
+            "created_at": "2025-12-10T01:44:12Z",
+            "deletion_protection": false,
+            "enabled_cluster_log_types": [],
+            "encryption_config": [],
+            "endpoint": "https://45AC449D4AC1C6CD4F0527CE7410BAEF.gr7.us-east-1.eks.amazonaws.com",
+            "force_update_version": null,
+            "id": "triton-gpu-cluster",
+            "identity": [
+              {
+                "oidc": [
+                  {
+                    "issuer": "https://oidc.eks.us-east-1.amazonaws.com/id/45AC449D4AC1C6CD4F0527CE7410BAEF"
+                  }
+                ]
+              }
+            ],
+            "kubernetes_network_config": [
+              {
+                "elastic_load_balancing": [
+                  {
+                    "enabled": false
+                  }
+                ],
+                "ip_family": "ipv4",
+                "service_ipv4_cidr": "172.20.0.0/16",
+                "service_ipv6_cidr": ""
+              }
+            ],
+            "name": "triton-gpu-cluster",
+            "outpost_config": [],
+            "platform_version": "eks.9",
+            "region": "us-east-1",
+            "remote_network_config": [],
+            "role_arn": "arn:aws:iam::478253497479:role/triton-gpu-cluster-eks-cluster-role",
+            "status": "ACTIVE",
+            "storage_config": [
+              {
+                "block_storage": [
+                  {
+                    "enabled": false
+                  }
+                ]
+              }
+            ],
+            "tags": {
+              "Name": "triton-gpu-cluster",
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "tags_all": {
+              "Name": "triton-gpu-cluster",
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "timeouts": null,
+            "upgrade_policy": [
+              {
+                "support_type": "EXTENDED"
+              }
+            ],
+            "version": "1.34",
+            "vpc_config": [
+              {
+                "cluster_security_group_id": "sg-0a16473fd1b1739e1",
+                "endpoint_private_access": false,
+                "endpoint_public_access": true,
+                "public_access_cidrs": [
+                  "0.0.0.0/0"
+                ],
+                "security_group_ids": [],
+                "subnet_ids": [
+                  "subnet-02312a6c371b62eed",
+                  "subnet-0c64c62aac43a092d"
+                ],
+                "vpc_id": "vpc-0817b1b310e7ffc4c"
+              }
+            ],
+            "zonal_shift_config": []
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjkwMDAwMDAwMDAwMCwidXBkYXRlIjozNjAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "module.iam.aws_iam_role.eks_cluster_role",
+            "module.vpc.aws_subnet.private_a",
+            "module.vpc.aws_subnet.private_b",
+            "module.vpc.aws_vpc.gpu_e2e"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.eks",
+      "mode": "managed",
+      "type": "kubernetes_config_map",
+      "name": "aws_auth",
+      "provider": "module.eks.provider[\"registry.terraform.io/hashicorp/kubernetes\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "binary_data": {},
+            "data": {
+              "mapRoles": "- groups:\n  - system:masters\n  rolearn: arn:aws:iam::478253497479:role/triton-mlops-github-actions-oidc-role\n  username: github-actions\n- groups:\n  - system:bootstrappers\n  - system:nodes\n  rolearn: arn:aws:iam::478253497479:role/triton-mlops-Nancy-eks-nodegroup-role\n  username: system:node:{{EC2PrivateDNSName}}\n- rolearn: arn:aws:iam::478253497479:role/triton-gpu-cluster-node-role\n  groups:\n  - system:bootstrappers\n  - system:nodes\n  username: system:node:{{EC2PrivateDNSName}}\n"
+            },
+            "id": "kube-system/aws-auth",
+            "immutable": false,
+            "metadata": [
+              {
+                "annotations": {},
+                "generate_name": "",
+                "generation": 0,
+                "labels": {},
+                "name": "aws-auth",
+                "namespace": "kube-system",
+                "resource_version": "880",
+                "uid": "5b6787c6-f366-4567-89b6-62156cfdfa50"
+              }
+            ]
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 1,
+          "identity": {
+            "api_version": "v1",
+            "kind": "ConfigMap",
+            "name": "aws-auth",
+            "namespace": "kube-system"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.eks.aws_eks_cluster.gpu_e2e",
+            "module.eks.data.aws_eks_cluster.main",
+            "module.eks.data.aws_eks_cluster_auth.main",
+            "module.iam.aws_iam_role.eks_cluster_role",
+            "module.iam.aws_iam_role.eks_nodegroup_role",
+            "module.iam.data.aws_iam_policy_document.eks_node_assume",
+            "module.vpc.aws_subnet.private_a",
+            "module.vpc.aws_subnet.private_b",
+            "module.vpc.aws_vpc.gpu_e2e"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.github_actions_oidc",
+      "mode": "data",
+      "type": "aws_caller_identity",
+      "name": "current",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "account_id": "478253497479",
+            "arn": "arn:aws:iam::478253497479:user/nancy-devops",
+            "id": "478253497479",
+            "user_id": "AIDAW6WRBHSDSMMLDGBY3"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "module": "module.github_actions_oidc",
+      "mode": "data",
+      "type": "template_file",
+      "name": "ci_trust",
+      "provider": "provider[\"registry.terraform.io/hashicorp/template\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "filename": null,
+            "id": "f1eba2196d2ea465830664944b3758f066a40df1d6c9abaa1c6ddbb5075fbd3f",
+            "rendered": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Principal\": {\n        \"Federated\": \"arn:aws:iam::478253497479:oidc-provider/token.actions.githubusercontent.com\"\n      },\n      \"Action\": \"sts:AssumeRoleWithWebIdentity\",\n      \"Condition\": {\n        \"StringEquals\": {\n          \"token.actions.githubusercontent.com:aud\": \"sts.amazonaws.com\",\n          \"token.actions.githubusercontent.com:sub\": \"repo:nbethala/triton-mlops-gpu-platform:*\"\n        }\n      }\n    }\n  ]\n}\n",
+            "template": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Principal\": {\n        \"Federated\": \"${oidc_provider_arn}\"\n      },\n      \"Action\": \"sts:AssumeRoleWithWebIdentity\",\n      \"Condition\": {\n        \"StringEquals\": {\n          \"token.actions.githubusercontent.com:aud\": \"sts.amazonaws.com\",\n          \"token.actions.githubusercontent.com:sub\": \"${repo_subject}\"\n        }\n      }\n    }\n  ]\n}\n",
+            "vars": {
+              "oidc_provider_arn": "arn:aws:iam::478253497479:oidc-provider/token.actions.githubusercontent.com",
+              "repo_subject": "repo:nbethala/triton-mlops-gpu-platform:*"
+            }
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "module": "module.github_actions_oidc",
+      "mode": "managed",
+      "type": "aws_iam_policy",
+      "name": "ecr_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::478253497479:policy/triton-mlops-github-ecr-policy",
+            "attachment_count": 0,
+            "description": "Allow pushing/pulling images to ECR repos used by GitHub Actions",
+            "id": "arn:aws:iam::478253497479:policy/triton-mlops-github-ecr-policy",
+            "name": "triton-mlops-github-ecr-policy",
+            "name_prefix": "",
+            "path": "/",
+            "policy": "{\"Statement\":[{\"Action\":[\"ecr:GetAuthorizationToken\",\"ecr:BatchCheckLayerAvailability\",\"ecr:GetDownloadUrlForLayer\",\"ecr:BatchGetImage\",\"ecr:PutImage\",\"ecr:CreateRepository\",\"ecr:TagResource\"],\"Effect\":\"Allow\",\"Resource\":\"*\",\"Sid\":\"ECRFullAccess\"}],\"Version\":\"2012-10-17\"}",
+            "policy_id": "ANPAW6WRBHSD4WWRPVRMD",
+            "tags": {},
+            "tags_all": {}
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "arn": "arn:aws:iam::478253497479:policy/triton-mlops-github-ecr-policy"
+          },
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.github_actions_oidc",
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "github_actions_oidc",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::478253497479:role/triton-mlops-github-actions-oidc-role",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRoleWithWebIdentity\",\"Condition\":{\"StringEquals\":{\"token.actions.githubusercontent.com:aud\":\"sts.amazonaws.com\"},\"StringLike\":{\"token.actions.githubusercontent.com:sub\":\"repo:nbethala/triton-mlops-gpu-platform:*\"}},\"Effect\":\"Allow\",\"Principal\":{\"Federated\":\"arn:aws:iam::478253497479:oidc-provider/token.actions.githubusercontent.com\"}}],\"Version\":\"2012-10-17\"}",
+            "create_date": "2025-12-10T01:43:58Z",
+            "description": "",
+            "force_detach_policies": false,
+            "id": "triton-mlops-github-actions-oidc-role",
+            "inline_policy": [],
+            "managed_policy_arns": [
+              "arn:aws:iam::478253497479:policy/triton-mlops-github-eks-ci-cd-policy",
+              "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser"
+            ],
+            "max_session_duration": 3600,
+            "name": "triton-mlops-github-actions-oidc-role",
+            "name_prefix": "",
+            "path": "/",
+            "permissions_boundary": "",
+            "tags": {},
+            "tags_all": {},
+            "unique_id": "AROAW6WRBHSDZHVO5RYCP"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "name": "triton-mlops-github-actions-oidc-role"
+          },
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjAifQ==",
+          "dependencies": [
+            "module.github_actions_oidc.data.aws_caller_identity.current",
+            "module.github_actions_oidc.data.template_file.ci_trust"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.gpu_node_group",
+      "mode": "managed",
+      "type": "aws_eks_node_group",
+      "name": "gpu_on_demand",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "ami_type": "AL2023_x86_64_NVIDIA",
+            "arn": "arn:aws:eks:us-east-1:478253497479:nodegroup/triton-gpu-cluster/triton-gpu-cluster-gpu-on-demand/44cd82fa-7a09-807c-9933-db67edf6b2ec",
+            "capacity_type": "ON_DEMAND",
+            "cluster_name": "triton-gpu-cluster",
+            "disk_size": 0,
+            "force_update_version": null,
+            "id": "triton-gpu-cluster:triton-gpu-cluster-gpu-on-demand",
+            "instance_types": [
+              "g4dn.xlarge"
+            ],
+            "labels": {
+              "accelerator": "nvidia"
+            },
+            "launch_template": [
+              {
+                "id": "lt-006410d11088a6926",
+                "name": "gpu-node-20251210015132391900000004",
+                "version": "1"
+              }
+            ],
+            "node_group_name": "triton-gpu-cluster-gpu-on-demand",
+            "node_group_name_prefix": "",
+            "node_repair_config": [],
+            "node_role_arn": "arn:aws:iam::478253497479:role/triton-gpu-cluster-node-role",
+            "region": "us-east-1",
+            "release_version": "1.34.2-20251120",
+            "remote_access": [],
+            "resources": [
+              {
+                "autoscaling_groups": [
+                  {
+                    "name": "eks-triton-gpu-cluster-gpu-on-demand-44cd82fa-7a09-807c-9933-db67edf6b2ec"
+                  }
+                ],
+                "remote_access_security_group_id": ""
+              }
+            ],
+            "scaling_config": [
+              {
+                "desired_size": 1,
+                "max_size": 2,
+                "min_size": 1
+              }
+            ],
+            "status": "ACTIVE",
+            "subnet_ids": [
+              "subnet-01d6369a5978f9e7e"
+            ],
+            "tags": {
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "tags_all": {
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "taint": [],
+            "timeouts": null,
+            "update_config": [
+              {
+                "max_unavailable": 1,
+                "max_unavailable_percentage": 0
+              }
+            ],
+            "version": "1.34"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInVwZGF0ZSI6MzYwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.eks.aws_eks_cluster.gpu_e2e",
+            "module.gpu_node_group.aws_launch_template.gpu_nodes",
+            "module.iam.aws_iam_role.eks_cluster_role",
+            "module.iam.aws_iam_role.eks_node_role",
+            "module.vpc.aws_subnet.private_a",
+            "module.vpc.aws_subnet.private_b",
+            "module.vpc.aws_subnet.public_a",
+            "module.vpc.aws_vpc.gpu_e2e"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.gpu_node_group",
+      "mode": "managed",
+      "type": "aws_launch_template",
+      "name": "gpu_nodes",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:478253497479:launch-template/lt-006410d11088a6926",
+            "block_device_mappings": [],
+            "capacity_reservation_specification": [],
+            "cpu_options": [],
+            "credit_specification": [],
+            "default_version": 1,
+            "description": "",
+            "disable_api_stop": false,
+            "disable_api_termination": false,
+            "ebs_optimized": "",
+            "enclave_options": [],
+            "hibernation_options": [],
+            "iam_instance_profile": [],
+            "id": "lt-006410d11088a6926",
+            "image_id": "",
+            "instance_initiated_shutdown_behavior": "",
+            "instance_market_options": [],
+            "instance_requirements": [],
+            "instance_type": "",
+            "kernel_id": "",
+            "key_name": "ml-pemfile",
+            "latest_version": 1,
+            "license_specification": [],
+            "maintenance_options": [],
+            "metadata_options": [
+              {
+                "http_endpoint": "enabled",
+                "http_protocol_ipv6": "",
+                "http_put_response_hop_limit": 0,
+                "http_tokens": "required",
+                "instance_metadata_tags": ""
+              }
+            ],
+            "monitoring": [],
+            "name": "gpu-node-20251210015132391900000004",
+            "name_prefix": "gpu-node-",
+            "network_interfaces": [],
+            "placement": [],
+            "private_dns_name_options": [],
+            "ram_disk_id": "",
+            "region": "us-east-1",
+            "security_group_names": [],
+            "tag_specifications": [],
+            "tags": {},
+            "tags_all": {},
+            "update_default_version": true,
+            "user_data": "TUlNRS1WZXJzaW9uOiAxLjAKQ29udGVudC1UeXBlOiBtdWx0aXBhcnQvbWl4ZWQ7IGJvdW5kYXJ5PSJOT0RFQURNLUJPVU5EQVJZIgoKLS1OT0RFQURNLUJPVU5EQVJZCkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vbm9kZS5la3MuYXdzCgphcGlWZXJzaW9uOiBub2RlLmVrcy5hd3MvdjFhbHBoYTEKa2luZDogTm9kZUNvbmZpZwpzcGVjOgogIGNsdXN0ZXI6CiAgICBuYW1lOiB0cml0b24tZ3B1LWNsdXN0ZXIKICAgIGFwaVNlcnZlckVuZHBvaW50OiBodHRwczovLzQ1QUM0NDlENEFDMUM2Q0Q0RjA1MjdDRTc0MTBCQUVGLmdyNy51cy1lYXN0LTEuZWtzLmFtYXpvbmF3cy5jb20KICAgIGNlcnRpZmljYXRlQXV0aG9yaXR5OiBMUzB0TFMxQ1JVZEpUaUJEUlZKVVNVWkpRMEZVUlMwdExTMHRDazFKU1VSQ1ZFTkRRV1V5WjBGM1NVSkJaMGxKWmxGcmNsVXdWREp1WkRSM1JGRlpTa3R2V2tsb2RtTk9RVkZGVEVKUlFYZEdWRVZVVFVKRlIwRXhWVVVLUVhoTlMyRXpWbWxhV0VwMVdsaFNiR042UVdWR2R6QjVUbFJGZVUxVVFYZE5WRkV3VGtSYVlVWjNNSHBPVkVWNVRVUm5kMDFVVVRWT1JGcGhUVUpWZUFwRmVrRlNRbWRPVmtKQlRWUkRiWFF4V1cxV2VXSnRWakJhV0UxM1oyZEZhVTFCTUVkRFUzRkhVMGxpTTBSUlJVSkJVVlZCUVRSSlFrUjNRWGRuWjBWTENrRnZTVUpCVVVSUU1EUjFkWFZhWm0xT1dGaGlXU3RxYVZkcllVZ3dVbWR3YzFCeFZYaGlWVWRNTmxaTGFEUTVTRUl3YkVwVmMzTmplRWRaU21rNFJHNEtMMU5rUlZOcksyNUthMGt4UW5WYVFXTndVVmxZYVc5ME0xTnZkSE5DWTIxTGR6SlpWMkpUU1UxWlZVdHlOamxEU2t4M1RWSjZNemxWYW5sRlZEVm9ZUXA0U0dRemFERlpObTF4U1doc1JYZFhlWG80TkRCQlNYWkRabW96ZEVkb1JEbDZaV1pCWjFocmJWSk1iVEV4VjFKSU1VOUtaVWhOYlRCbGRUUXhUMlpKQ21KdmNXbFlWV3BDZGxKQ05rRXhRakpsZEVSUlJFUmhjME12SzBsR2JreEVTMU5NUm5OWlFtdFRiRUZZUm10TVFWbEtPRUpGSzNWS2JtRlBVbVpDYmxjS2VDOU5XRkV4UnpWMk4wdFRabXAyV1Zaek0xWmtTalJ5ZFV0MFNWZzRUa1o2TURWTVdVOXRXUzlPVlVSS1ZXWlpZMWswVVVSYUwyMXdMMDQ1UkZwVFF3cHpTM1EwU0VsblFuZDBPRE5VVW5oVVlXMUtlamd3TldnMk5WRmFRV2ROUWtGQlIycFhWRUpZVFVFMFIwRXhWV1JFZDBWQ0wzZFJSVUYzU1VOd1JFRlFDa0puVGxaSVVrMUNRV1k0UlVKVVFVUkJVVWd2VFVJd1IwRXhWV1JFWjFGWFFrSlNTSEFyWVU1SFJrcHFiMjF1U1hwMFNXVkxOekJQVFZrMFpETnFRVllLUW1kT1ZraFNSVVZFYWtGTloyZHdjbVJYU214amJUVnNaRWRXZWsxQk1FZERVM0ZIVTBsaU0wUlJSVUpEZDFWQlFUUkpRa0ZSUVZoWWFGSnhaVFJoVUFwWFRUbG9jMmN5Y21aRWNGUkhRVVZuYUVvMVQyOVlXRmRyY1Rsd2JHTm1RM0JuWWpZMGVFVlpUakpDVkRreWRsWnJWRVpwU1RsQlRXeFhNMDlZV0RGeUNrOHhSVmxCTkhoNVUzVm1OemR1Y1V4NmMyOVNlV2RoVG5rMU9ITnRVSFpyWmtwQ01IQjBabGR1ZGs5RFVqWnFXVWhNZUVWU1IyUmlaRUpvV0hGNWJEQUthRlJrVmxCRUt6SnpNVFpRTUhKelUzaFlWa1pLVDFsRlNVdEhURVZ2UWt0b2NXcHNVVFJ4Y0dsMFp5OVNhMDVxZVZrellVVlhOa3hxSzJsSWNFRTVhZ3B6YlRKeFRqSkVNbTlEVkhOcGMzVTBjemx3ZUhKa1FVcFZkVzlJT1c1MmRHSm1RMXBDVUZKTFUwWmhjWHBJYWxKYWEwOWlhMW94UWxoWVJUaFVkR2R3Q2sxUFlVdFViRkIxTUZNNWNWQlBRMWQxTW1Sa1FsbERiVEZQWVZFd01UbGxTVmRrY0VocGNXZDBZVXBWY0RFNWJ6RTVaR2RFU0ZwTFZuQkRjSEpaUzJrS1JsTndMM3BYVUZaU1IwZHZDaTB0TFMwdFJVNUVJRU5GVWxSSlJrbERRVlJGTFMwdExTMEsKICBrdWJlbGV0OgogICAgZmxhZ3M6CiAgICAgIC0gLS1ub2RlLWxhYmVscz1udmlkaWEuY29tL2dwdT10cnVlCiAgICBjb25maWc6CiAgICAgIGNsdXN0ZXJETlM6CiAgICAgICAgLSAxMC4xMDAuMC4xMAogIGJvb3RzdHJhcDoKICAgIHBhY2thZ2VzOgogICAgICAtIGFtYXpvbi1zc20tYWdlbnQKICAgIGFkZGl0aW9uYWxTeXN0ZW1kVW5pdHM6CiAgICAgIC0gbmFtZTogYW1hem9uLXNzbS1hZ2VudC5zZXJ2aWNlCiAgICAgICAgZW5hYmxlOiB0cnVlCiAgICAgICAgY29tbWFuZDogc3RhcnQKCi0tTk9ERUFETS1CT1VOREFSWS0tCg==",
+            "vpc_security_group_ids": []
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "module.eks.aws_eks_cluster.gpu_e2e",
+            "module.iam.aws_iam_role.eks_cluster_role",
+            "module.vpc.aws_subnet.private_a",
+            "module.vpc.aws_subnet.private_b",
+            "module.vpc.aws_vpc.gpu_e2e"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "data",
+      "type": "aws_caller_identity",
+      "name": "current",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "account_id": "478253497479",
+            "arn": "arn:aws:iam::478253497479:user/nancy-devops",
+            "id": "478253497479",
+            "user_id": "AIDAW6WRBHSDSMMLDGBY3"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "data",
+      "type": "aws_iam_policy_document",
+      "name": "eks_gpu_nodegroup",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "2851119427",
+            "json": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"sts:AssumeRole\",\n      \"Principal\": {\n        \"Service\": \"ec2.amazonaws.com\"\n      }\n    }\n  ]\n}",
+            "minified_json": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"sts:AssumeRole\",\"Principal\":{\"Service\":\"ec2.amazonaws.com\"}}]}",
+            "override_json": null,
+            "override_policy_documents": null,
+            "policy_id": null,
+            "source_json": null,
+            "source_policy_documents": null,
+            "statement": [
+              {
+                "actions": [
+                  "sts:AssumeRole"
+                ],
+                "condition": [],
+                "effect": "Allow",
+                "not_actions": [],
+                "not_principals": [],
+                "not_resources": [],
+                "principals": [
+                  {
+                    "identifiers": [
+                      "ec2.amazonaws.com"
+                    ],
+                    "type": "Service"
+                  }
+                ],
+                "resources": [],
+                "sid": ""
+              }
+            ],
+            "version": "2012-10-17"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "data",
+      "type": "aws_iam_policy_document",
+      "name": "eks_node_assume",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "2851119427",
+            "json": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"sts:AssumeRole\",\n      \"Principal\": {\n        \"Service\": \"ec2.amazonaws.com\"\n      }\n    }\n  ]\n}",
+            "minified_json": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"sts:AssumeRole\",\"Principal\":{\"Service\":\"ec2.amazonaws.com\"}}]}",
+            "override_json": null,
+            "override_policy_documents": null,
+            "policy_id": null,
+            "source_json": null,
+            "source_policy_documents": null,
+            "statement": [
+              {
+                "actions": [
+                  "sts:AssumeRole"
+                ],
+                "condition": [],
+                "effect": "Allow",
+                "not_actions": [],
+                "not_principals": [],
+                "not_resources": [],
+                "principals": [
+                  {
+                    "identifiers": [
+                      "ec2.amazonaws.com"
+                    ],
+                    "type": "Service"
+                  }
+                ],
+                "resources": [],
+                "sid": ""
+              }
+            ],
+            "version": "2012-10-17"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_policy",
+      "name": "alb_controller_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::478253497479:policy/ALBControllerIAMPolicy",
+            "attachment_count": 1,
+            "description": "Permissions for AWS Load Balancer Controller",
+            "id": "arn:aws:iam::478253497479:policy/ALBControllerIAMPolicy",
+            "name": "ALBControllerIAMPolicy",
+            "name_prefix": "",
+            "path": "/",
+            "policy": "{\"Statement\":[{\"Action\":[\"acm:DescribeCertificate\",\"acm:ListCertificates\",\"acm:GetCertificate\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"ec2:AuthorizeSecurityGroupIngress\",\"ec2:RevokeSecurityGroupIngress\",\"ec2:CreateSecurityGroup\",\"ec2:DeleteSecurityGroup\",\"ec2:DescribeSecurityGroups\",\"ec2:DescribeSubnets\",\"ec2:DescribeVpcs\",\"ec2:DescribeAddresses\",\"ec2:DescribeInternetGateways\",\"ec2:DescribeAccountAttributes\",\"ec2:DescribeAvailabilityZones\",\"ec2:DescribeNetworkInterfaces\",\"ec2:DescribeTags\",\"ec2:GetCoipPoolUsage\",\"ec2:DescribeCoipPools\",\"ec2:DescribeVpcPeeringConnections\",\"ec2:DescribeVpcEndpoints\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"elasticloadbalancing:AddListenerCertificates\",\"elasticloadbalancing:AddTags\",\"elasticloadbalancing:CreateListener\",\"elasticloadbalancing:CreateLoadBalancer\",\"elasticloadbalancing:CreateRule\",\"elasticloadbalancing:CreateTargetGroup\",\"elasticloadbalancing:DeleteListener\",\"elasticloadbalancing:DeleteLoadBalancer\",\"elasticloadbalancing:DeleteRule\",\"elasticloadbalancing:DeleteTargetGroup\",\"elasticloadbalancing:DeregisterTargets\",\"elasticloadbalancing:DescribeListeners\",\"elasticloadbalancing:DescribeLoadBalancers\",\"elasticloadbalancing:DescribeLoadBalancerAttributes\",\"elasticloadbalancing:DescribeRules\",\"elasticloadbalancing:DescribeSSLPolicies\",\"elasticloadbalancing:DescribeTags\",\"elasticloadbalancing:DescribeTargetGroups\",\"elasticloadbalancing:DescribeTargetGroupAttributes\",\"elasticloadbalancing:DescribeTargetHealth\",\"elasticloadbalancing:ModifyListener\",\"elasticloadbalancing:ModifyLoadBalancerAttributes\",\"elasticloadbalancing:ModifyRule\",\"elasticloadbalancing:ModifyTargetGroup\",\"elasticloadbalancing:ModifyTargetGroupAttributes\",\"elasticloadbalancing:RegisterTargets\",\"elasticloadbalancing:RemoveListenerCertificates\",\"elasticloadbalancing:RemoveTags\",\"elasticloadbalancing:SetIpAddressType\",\"elasticloadbalancing:SetSecurityGroups\",\"elasticloadbalancing:SetSubnets\",\"elasticloadbalancing:SetWebAcl\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"iam:CreateServiceLinkedRole\",\"iam:GetServerCertificate\",\"iam:ListServerCertificates\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"cognito-idp:DescribeUserPoolClient\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"waf-regional:GetWebACLForResource\",\"waf-regional:GetWebACL\",\"waf-regional:AssociateWebACL\",\"waf-regional:DisassociateWebACL\",\"waf:GetWebACL\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"shield:DescribeProtection\",\"shield:GetSubscriptionState\",\"shield:ListProtections\",\"shield:CreateProtection\",\"shield:DeleteProtection\"],\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
+            "policy_id": "ANPAW6WRBHSDQGWGPBI35",
+            "tags": {},
+            "tags_all": {}
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "arn": "arn:aws:iam::478253497479:policy/ALBControllerIAMPolicy"
+          },
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_policy",
+      "name": "cluster_autoscaler_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::478253497479:policy/ProjectGPU-ClusterAutoscaler",
+            "attachment_count": 1,
+            "description": "",
+            "id": "arn:aws:iam::478253497479:policy/ProjectGPU-ClusterAutoscaler",
+            "name": "ProjectGPU-ClusterAutoscaler",
+            "name_prefix": "",
+            "path": "/",
+            "policy": "{\"Statement\":[{\"Action\":[\"autoscaling:DescribeAutoScalingGroups\",\"autoscaling:DescribeAutoScalingInstances\",\"autoscaling:DescribeLaunchConfigurations\",\"autoscaling:DescribeTags\",\"autoscaling:SetDesiredCapacity\",\"autoscaling:TerminateInstanceInAutoScalingGroup\",\"ec2:DescribeLaunchTemplateVersions\"],\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
+            "policy_id": "ANPAW6WRBHSD7EYDGPPFD",
+            "tags": {},
+            "tags_all": {}
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "arn": "arn:aws:iam::478253497479:policy/ProjectGPU-ClusterAutoscaler"
+          },
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_policy",
+      "name": "eks_ci_cd_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::478253497479:policy/triton-mlops-github-eks-ci-cd-policy",
+            "attachment_count": 1,
+            "description": "Permissions for GitHub Actions to manage EKS",
+            "id": "arn:aws:iam::478253497479:policy/triton-mlops-github-eks-ci-cd-policy",
+            "name": "triton-mlops-github-eks-ci-cd-policy",
+            "name_prefix": "",
+            "path": "/",
+            "policy": "{\"Statement\":[{\"Action\":[\"eks:DescribeCluster\",\"eks:ListClusters\",\"eks:ListNodegroups\",\"eks:DescribeNodegroup\",\"eks:ListFargateProfiles\",\"eks:DescribeFargateProfile\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"ec2:DescribeSubnets\",\"ec2:DescribeSecurityGroups\",\"ec2:DescribeRouteTables\",\"ec2:DescribeVpcs\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"sts:AssumeRole\"],\"Effect\":\"Allow\",\"Resource\":\"arn:aws:iam::478253497479:role/mlops-gpu-eks-node-role\"}],\"Version\":\"2012-10-17\"}",
+            "policy_id": "ANPAW6WRBHSD5DXAREAMO",
+            "tags": {},
+            "tags_all": {}
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "arn": "arn:aws:iam::478253497479:policy/triton-mlops-github-eks-ci-cd-policy"
+          },
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_policy",
+      "name": "external_dns_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::478253497479:policy/ProjectGPU-ExternalDNS",
+            "attachment_count": 1,
+            "description": "",
+            "id": "arn:aws:iam::478253497479:policy/ProjectGPU-ExternalDNS",
+            "name": "ProjectGPU-ExternalDNS",
+            "name_prefix": "",
+            "path": "/",
+            "policy": "{\"Statement\":[{\"Action\":[\"route53:ChangeResourceRecordSets\"],\"Effect\":\"Allow\",\"Resource\":\"arn:aws:route53:::hostedzone/*\"},{\"Action\":[\"route53:ListHostedZones\",\"route53:ListResourceRecordSets\"],\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
+            "policy_id": "ANPAW6WRBHSD6OCKXUS42",
+            "tags": {},
+            "tags_all": {}
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "arn": "arn:aws:iam::478253497479:policy/ProjectGPU-ExternalDNS"
+          },
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_policy",
+      "name": "operator_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::478253497479:policy/ProjectGPU-E2E-Operator",
+            "attachment_count": 1,
+            "description": "",
+            "id": "arn:aws:iam::478253497479:policy/ProjectGPU-E2E-Operator",
+            "name": "ProjectGPU-E2E-Operator",
+            "name_prefix": "",
+            "path": "/",
+            "policy": "{\"Statement\":[{\"Action\":[\"eks:*\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"ec2:Describe*\",\"ec2:CreateTags\",\"ec2:DeleteTags\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"iam:PassRole\",\"iam:GetRole\",\"iam:ListRolePolicies\",\"iam:CreateServiceLinkedRole\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"ecr:*\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"s3:*\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"cloudformation:*\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"elasticloadbalancing:*\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"logs:*\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"route53:ListHostedZonesByName\",\"route53:GetHostedZone\",\"route53:ListTagsForResource\"],\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
+            "policy_id": "ANPAW6WRBHSD5VTLCYDGY",
+            "tags": {},
+            "tags_all": {}
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "arn": "arn:aws:iam::478253497479:policy/ProjectGPU-E2E-Operator"
+          },
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_policy",
+      "name": "s3_access_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::478253497479:policy/ProjectGPU-S3Access",
+            "attachment_count": 1,
+            "description": "",
+            "id": "arn:aws:iam::478253497479:policy/ProjectGPU-S3Access",
+            "name": "ProjectGPU-S3Access",
+            "name_prefix": "",
+            "path": "/",
+            "policy": "{\"Statement\":[{\"Action\":[\"s3:GetObject\",\"s3:PutObject\",\"s3:DeleteObject\"],\"Effect\":\"Allow\",\"Resource\":\"arn:aws:s3:::my-bucket-name/*\"},{\"Action\":[\"s3:ListBucket\"],\"Effect\":\"Allow\",\"Resource\":\"arn:aws:s3:::my-bucket-name\"}],\"Version\":\"2012-10-17\"}",
+            "policy_id": "ANPAW6WRBHSD3C3MXQVK5",
+            "tags": {},
+            "tags_all": {}
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "arn": "arn:aws:iam::478253497479:policy/ProjectGPU-S3Access"
+          },
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "alb_controller",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::478253497479:role/ALBControllerIRSA",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRoleWithWebIdentity\",\"Condition\":{\"StringEquals\":{\"oidc.eks.us-east-1.amazonaws.com/id/0EF15E7DCFEC9A40A61BB505FBF0BD65:sub\":\"system:serviceaccount:kube-system:aws-load-balancer-controller\"}},\"Effect\":\"Allow\",\"Principal\":{\"Federated\":\"arn:aws:iam::478253497479:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/0EF15E7DCFEC9A40A61BB505FBF0BD65\"}}],\"Version\":\"2012-10-17\"}",
+            "create_date": "2025-12-10T01:43:58Z",
+            "description": "",
+            "force_detach_policies": false,
+            "id": "ALBControllerIRSA",
+            "inline_policy": [],
+            "managed_policy_arns": [
+              "arn:aws:iam::478253497479:policy/ALBControllerIAMPolicy"
+            ],
+            "max_session_duration": 3600,
+            "name": "ALBControllerIRSA",
+            "name_prefix": "",
+            "path": "/",
+            "permissions_boundary": "",
+            "tags": {
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "tags_all": {
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "unique_id": "AROAW6WRBHSD2CMRYEZRX"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "name": "ALBControllerIRSA"
+          },
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "cluster_autoscaler",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::478253497479:role/ClusterAutoscalerIRSA",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRoleWithWebIdentity\",\"Condition\":{\"StringEquals\":{\"oidc.eks.us-east-1.amazonaws.com/id/0EF15E7DCFEC9A40A61BB505FBF0BD65:sub\":\"system:serviceaccount:kube-system:cluster-autoscaler\"}},\"Effect\":\"Allow\",\"Principal\":{\"Federated\":\"arn:aws:iam::478253497479:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/0EF15E7DCFEC9A40A61BB505FBF0BD65\"}}],\"Version\":\"2012-10-17\"}",
+            "create_date": "2025-12-10T01:43:58Z",
+            "description": "",
+            "force_detach_policies": false,
+            "id": "ClusterAutoscalerIRSA",
+            "inline_policy": [],
+            "managed_policy_arns": [
+              "arn:aws:iam::478253497479:policy/ProjectGPU-ClusterAutoscaler"
+            ],
+            "max_session_duration": 3600,
+            "name": "ClusterAutoscalerIRSA",
+            "name_prefix": "",
+            "path": "/",
+            "permissions_boundary": "",
+            "tags": {
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "tags_all": {
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "unique_id": "AROAW6WRBHSDZWQ7JH5TL"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "name": "ClusterAutoscalerIRSA"
+          },
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "eks_cluster_role",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::478253497479:role/triton-gpu-cluster-eks-cluster-role",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"eks.amazonaws.com\"}}],\"Version\":\"2012-10-17\"}",
+            "create_date": "2025-12-10T01:43:58Z",
+            "description": "",
+            "force_detach_policies": false,
+            "id": "triton-gpu-cluster-eks-cluster-role",
+            "inline_policy": [],
+            "managed_policy_arns": [
+              "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
+              "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
+            ],
+            "max_session_duration": 3600,
+            "name": "triton-gpu-cluster-eks-cluster-role",
+            "name_prefix": "",
+            "path": "/",
+            "permissions_boundary": "",
+            "tags": {
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "tags_all": {
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "unique_id": "AROAW6WRBHSDXDGD66XLC"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "name": "triton-gpu-cluster-eks-cluster-role"
+          },
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "eks_gpu_nodegroup",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::478253497479:role/eks-gpu-nodegroup-role",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ec2.amazonaws.com\"}}],\"Version\":\"2012-10-17\"}",
+            "create_date": "2025-12-10T01:43:58Z",
+            "description": "",
+            "force_detach_policies": false,
+            "id": "eks-gpu-nodegroup-role",
+            "inline_policy": [],
+            "managed_policy_arns": [
+              "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+            ],
+            "max_session_duration": 3600,
+            "name": "eks-gpu-nodegroup-role",
+            "name_prefix": "",
+            "path": "/",
+            "permissions_boundary": "",
+            "tags": {},
+            "tags_all": {},
+            "unique_id": "AROAW6WRBHSD23RR7MP7P"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "name": "eks-gpu-nodegroup-role"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.iam.data.aws_iam_policy_document.eks_gpu_nodegroup"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "eks_node_role",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::478253497479:role/triton-gpu-cluster-node-role",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ec2.amazonaws.com\"}}],\"Version\":\"2012-10-17\"}",
+            "create_date": "2025-12-10T01:43:58Z",
+            "description": "",
+            "force_detach_policies": false,
+            "id": "triton-gpu-cluster-node-role",
+            "inline_policy": [],
+            "managed_policy_arns": [
+              "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+              "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
+              "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
+              "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
+            ],
+            "max_session_duration": 3600,
+            "name": "triton-gpu-cluster-node-role",
+            "name_prefix": "",
+            "path": "/",
+            "permissions_boundary": "",
+            "tags": {
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "tags_all": {
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "unique_id": "AROAW6WRBHSDSZXZ3VEYK"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "name": "triton-gpu-cluster-node-role"
+          },
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "eks_nodegroup_role",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::478253497479:role/triton-mlops-Nancy-eks-nodegroup-role",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ec2.amazonaws.com\"}}],\"Version\":\"2012-10-17\"}",
+            "create_date": "2025-12-10T01:43:58Z",
+            "description": "",
+            "force_detach_policies": false,
+            "id": "triton-mlops-Nancy-eks-nodegroup-role",
+            "inline_policy": [],
+            "managed_policy_arns": [
+              "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+              "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
+              "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
+            ],
+            "max_session_duration": 3600,
+            "name": "triton-mlops-Nancy-eks-nodegroup-role",
+            "name_prefix": "",
+            "path": "/",
+            "permissions_boundary": "",
+            "tags": {},
+            "tags_all": {},
+            "unique_id": "AROAW6WRBHSDWEWZ5ZWQK"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "name": "triton-mlops-Nancy-eks-nodegroup-role"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.iam.data.aws_iam_policy_document.eks_node_assume"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "eks_operator",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::478253497479:role/EKSOperatorRole",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::478253497479:user/nancy-devops\"}}],\"Version\":\"2012-10-17\"}",
+            "create_date": "2025-12-10T01:43:58Z",
+            "description": "",
+            "force_detach_policies": false,
+            "id": "EKSOperatorRole",
+            "inline_policy": [],
+            "managed_policy_arns": [
+              "arn:aws:iam::478253497479:policy/ProjectGPU-E2E-Operator",
+              "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
+              "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
+            ],
+            "max_session_duration": 3600,
+            "name": "EKSOperatorRole",
+            "name_prefix": "",
+            "path": "/",
+            "permissions_boundary": "",
+            "tags": {
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "tags_all": {
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "unique_id": "AROAW6WRBHSD3HXZ5GMOP"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "name": "EKSOperatorRole"
+          },
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "external_dns",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::478253497479:role/ExternalDNSIRSA",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRoleWithWebIdentity\",\"Condition\":{\"StringEquals\":{\"oidc.eks.us-east-1.amazonaws.com/id/0EF15E7DCFEC9A40A61BB505FBF0BD65:sub\":\"system:serviceaccount:kube-system:external-dns\"}},\"Effect\":\"Allow\",\"Principal\":{\"Federated\":\"arn:aws:iam::478253497479:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/0EF15E7DCFEC9A40A61BB505FBF0BD65\"}}],\"Version\":\"2012-10-17\"}",
+            "create_date": "2025-12-10T01:43:58Z",
+            "description": "",
+            "force_detach_policies": false,
+            "id": "ExternalDNSIRSA",
+            "inline_policy": [],
+            "managed_policy_arns": [
+              "arn:aws:iam::478253497479:policy/ProjectGPU-ExternalDNS"
+            ],
+            "max_session_duration": 3600,
+            "name": "ExternalDNSIRSA",
+            "name_prefix": "",
+            "path": "/",
+            "permissions_boundary": "",
+            "tags": {
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "tags_all": {
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "unique_id": "AROAW6WRBHSD3AVQH6IOG"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "name": "ExternalDNSIRSA"
+          },
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "github_actions_ecr",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::478253497479:role/GitHubActionsECRRole",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRoleWithWebIdentity\",\"Condition\":{\"StringEquals\":{\"token.actions.githubusercontent.com:aud\":\"sts.amazonaws.com\"},\"StringLike\":{\"token.actions.githubusercontent.com:sub\":\"repo:nbethala/triton-mlops-gpu-platform:*\"}},\"Effect\":\"Allow\",\"Principal\":{\"Federated\":\"arn:aws:iam::478253497479:oidc-provider/token.actions.githubusercontent.com\"}}],\"Version\":\"2012-10-17\"}",
+            "create_date": "2025-12-10T01:43:58Z",
+            "description": "",
+            "force_detach_policies": false,
+            "id": "GitHubActionsECRRole",
+            "inline_policy": [],
+            "managed_policy_arns": [
+              "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser"
+            ],
+            "max_session_duration": 3600,
+            "name": "GitHubActionsECRRole",
+            "name_prefix": "",
+            "path": "/",
+            "permissions_boundary": "",
+            "tags": {
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "tags_all": {
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "unique_id": "AROAW6WRBHSD5C73UPP2C"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "name": "GitHubActionsECRRole"
+          },
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "github_actions_role",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::478253497479:role/triton-mlops-github-actions-oidc-role",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRoleWithWebIdentity\",\"Condition\":{\"StringEquals\":{\"token.actions.githubusercontent.com:aud\":\"sts.amazonaws.com\"},\"StringLike\":{\"token.actions.githubusercontent.com:sub\":\"repo:nbethala/triton-mlops-gpu-platform:*\"}},\"Effect\":\"Allow\",\"Principal\":{\"Federated\":\"arn:aws:iam::478253497479:oidc-provider/token.actions.githubusercontent.com\"}}],\"Version\":\"2012-10-17\"}",
+            "create_date": "2025-12-10T01:43:58Z",
+            "description": "",
+            "force_detach_policies": false,
+            "id": "triton-mlops-github-actions-oidc-role",
+            "inline_policy": [],
+            "managed_policy_arns": [
+              "arn:aws:iam::478253497479:policy/triton-mlops-github-eks-ci-cd-policy",
+              "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser"
+            ],
+            "max_session_duration": 3600,
+            "name": "triton-mlops-github-actions-oidc-role",
+            "name_prefix": "",
+            "path": "/",
+            "permissions_boundary": "",
+            "tags": {},
+            "tags_all": {},
+            "unique_id": "AROAW6WRBHSDZHVO5RYCP"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "name": "triton-mlops-github-actions-oidc-role"
+          },
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "s3_access",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::478253497479:role/S3AccessIRSA",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRoleWithWebIdentity\",\"Condition\":{\"StringEquals\":{\"oidc.eks.us-east-1.amazonaws.com/id/0EF15E7DCFEC9A40A61BB505FBF0BD65:sub\":\"system:serviceaccount:default:s3-access\"}},\"Effect\":\"Allow\",\"Principal\":{\"Federated\":\"arn:aws:iam::478253497479:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/0EF15E7DCFEC9A40A61BB505FBF0BD65\"}}],\"Version\":\"2012-10-17\"}",
+            "create_date": "2025-12-10T01:43:58Z",
+            "description": "",
+            "force_detach_policies": false,
+            "id": "S3AccessIRSA",
+            "inline_policy": [],
+            "managed_policy_arns": [
+              "arn:aws:iam::478253497479:policy/ProjectGPU-S3Access"
+            ],
+            "max_session_duration": 3600,
+            "name": "S3AccessIRSA",
+            "name_prefix": "",
+            "path": "/",
+            "permissions_boundary": "",
+            "tags": {
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "tags_all": {
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "unique_id": "AROAW6WRBHSDWSLMBTBOP"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "name": "S3AccessIRSA"
+          },
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "alb_controller_attach",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "ALBControllerIRSA/arn:aws:iam::478253497479:policy/ALBControllerIAMPolicy",
+            "policy_arn": "arn:aws:iam::478253497479:policy/ALBControllerIAMPolicy",
+            "role": "ALBControllerIRSA"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "policy_arn": "arn:aws:iam::478253497479:policy/ALBControllerIAMPolicy",
+            "role": "ALBControllerIRSA"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.iam.aws_iam_policy.alb_controller_policy",
+            "module.iam.aws_iam_role.alb_controller"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "cloudwatch_agent",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "triton-gpu-cluster-node-role/arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy",
+            "policy_arn": "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy",
+            "role": "triton-gpu-cluster-node-role"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "policy_arn": "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy",
+            "role": "triton-gpu-cluster-node-role"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.iam.aws_iam_role.eks_node_role"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "cluster_autoscaler_attach",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "ClusterAutoscalerIRSA/arn:aws:iam::478253497479:policy/ProjectGPU-ClusterAutoscaler",
+            "policy_arn": "arn:aws:iam::478253497479:policy/ProjectGPU-ClusterAutoscaler",
+            "role": "ClusterAutoscalerIRSA"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "policy_arn": "arn:aws:iam::478253497479:policy/ProjectGPU-ClusterAutoscaler",
+            "role": "ClusterAutoscalerIRSA"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.iam.aws_iam_policy.cluster_autoscaler_policy",
+            "module.iam.aws_iam_role.cluster_autoscaler"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "ecr_readonly",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "triton-gpu-cluster-node-role/arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+            "role": "triton-gpu-cluster-node-role"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+            "role": "triton-gpu-cluster-node-role"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.iam.aws_iam_role.eks_node_role"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "eks_ci_cd_attach",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "triton-mlops-github-actions-oidc-role/arn:aws:iam::478253497479:policy/triton-mlops-github-eks-ci-cd-policy",
+            "policy_arn": "arn:aws:iam::478253497479:policy/triton-mlops-github-eks-ci-cd-policy",
+            "role": "triton-mlops-github-actions-oidc-role"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "policy_arn": "arn:aws:iam::478253497479:policy/triton-mlops-github-eks-ci-cd-policy",
+            "role": "triton-mlops-github-actions-oidc-role"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.iam.aws_iam_policy.eks_ci_cd_policy",
+            "module.iam.aws_iam_role.github_actions_role"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "eks_cluster_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "triton-gpu-cluster-eks-cluster-role/arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
+            "role": "triton-gpu-cluster-eks-cluster-role"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
+            "role": "triton-gpu-cluster-eks-cluster-role"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.iam.aws_iam_role.eks_cluster_role"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "eks_cni",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "triton-gpu-cluster-node-role/arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
+            "role": "triton-gpu-cluster-node-role"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
+            "role": "triton-gpu-cluster-node-role"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.iam.aws_iam_role.eks_node_role"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "eks_nodegroup_cni",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "triton-mlops-Nancy-eks-nodegroup-role/arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
+            "role": "triton-mlops-Nancy-eks-nodegroup-role"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
+            "role": "triton-mlops-Nancy-eks-nodegroup-role"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.iam.aws_iam_role.eks_nodegroup_role",
+            "module.iam.data.aws_iam_policy_document.eks_node_assume"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "eks_nodegroup_ecr",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "triton-mlops-Nancy-eks-nodegroup-role/arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+            "role": "triton-mlops-Nancy-eks-nodegroup-role"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+            "role": "triton-mlops-Nancy-eks-nodegroup-role"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.iam.aws_iam_role.eks_nodegroup_role",
+            "module.iam.data.aws_iam_policy_document.eks_node_assume"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "eks_nodegroup_worker",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "triton-mlops-Nancy-eks-nodegroup-role/arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
+            "role": "triton-mlops-Nancy-eks-nodegroup-role"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
+            "role": "triton-mlops-Nancy-eks-nodegroup-role"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.iam.aws_iam_role.eks_nodegroup_role",
+            "module.iam.data.aws_iam_policy_document.eks_node_assume"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "eks_operator_cluster",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "EKSOperatorRole/arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
+            "role": "EKSOperatorRole"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
+            "role": "EKSOperatorRole"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.iam.aws_iam_role.eks_operator"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "eks_operator_service",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "EKSOperatorRole/arn:aws:iam::aws:policy/AmazonEKSServicePolicy",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEKSServicePolicy",
+            "role": "EKSOperatorRole"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEKSServicePolicy",
+            "role": "EKSOperatorRole"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.iam.aws_iam_role.eks_operator"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "eks_service_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "triton-gpu-cluster-eks-cluster-role/arn:aws:iam::aws:policy/AmazonEKSServicePolicy",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEKSServicePolicy",
+            "role": "triton-gpu-cluster-eks-cluster-role"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEKSServicePolicy",
+            "role": "triton-gpu-cluster-eks-cluster-role"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.iam.aws_iam_role.eks_cluster_role"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "eks_worker_node",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "triton-gpu-cluster-node-role/arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
+            "role": "triton-gpu-cluster-node-role"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
+            "role": "triton-gpu-cluster-node-role"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.iam.aws_iam_role.eks_node_role"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "external_dns_attach",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "ExternalDNSIRSA/arn:aws:iam::478253497479:policy/ProjectGPU-ExternalDNS",
+            "policy_arn": "arn:aws:iam::478253497479:policy/ProjectGPU-ExternalDNS",
+            "role": "ExternalDNSIRSA"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "policy_arn": "arn:aws:iam::478253497479:policy/ProjectGPU-ExternalDNS",
+            "role": "ExternalDNSIRSA"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.iam.aws_iam_policy.external_dns_policy",
+            "module.iam.aws_iam_role.external_dns"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "github_actions_ecr_attach",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "GitHubActionsECRRole/arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser",
+            "role": "GitHubActionsECRRole"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser",
+            "role": "GitHubActionsECRRole"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.iam.aws_iam_role.github_actions_ecr"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "github_actions_role_ecr",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "triton-mlops-github-actions-oidc-role/arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser",
+            "role": "triton-mlops-github-actions-oidc-role"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser",
+            "role": "triton-mlops-github-actions-oidc-role"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.iam.aws_iam_role.github_actions_role"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "gpu_nodegroup_ecr_pull",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "eks-gpu-nodegroup-role/arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+            "role": "eks-gpu-nodegroup-role"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "policy_arn": "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+            "role": "eks-gpu-nodegroup-role"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.iam.aws_iam_role.eks_gpu_nodegroup",
+            "module.iam.data.aws_iam_policy_document.eks_gpu_nodegroup"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "operator_attach",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "EKSOperatorRole/arn:aws:iam::478253497479:policy/ProjectGPU-E2E-Operator",
+            "policy_arn": "arn:aws:iam::478253497479:policy/ProjectGPU-E2E-Operator",
+            "role": "EKSOperatorRole"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "policy_arn": "arn:aws:iam::478253497479:policy/ProjectGPU-E2E-Operator",
+            "role": "EKSOperatorRole"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.iam.aws_iam_policy.operator_policy",
+            "module.iam.aws_iam_role.eks_operator"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.iam",
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "s3_access_attach",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "S3AccessIRSA/arn:aws:iam::478253497479:policy/ProjectGPU-S3Access",
+            "policy_arn": "arn:aws:iam::478253497479:policy/ProjectGPU-S3Access",
+            "role": "S3AccessIRSA"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "policy_arn": "arn:aws:iam::478253497479:policy/ProjectGPU-S3Access",
+            "role": "S3AccessIRSA"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.iam.aws_iam_policy.s3_access_policy",
+            "module.iam.aws_iam_role.s3_access"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.monitoring",
+      "mode": "managed",
+      "type": "helm_release",
+      "name": "grafana",
+      "provider": "provider[\"registry.terraform.io/hashicorp/helm\"]",
+      "instances": [
+        {
+          "schema_version": 2,
+          "attributes": {
+            "atomic": false,
+            "chart": "grafana",
+            "cleanup_on_fail": false,
+            "create_namespace": false,
+            "dependency_update": false,
+            "description": null,
+            "devel": null,
+            "disable_crd_hooks": false,
+            "disable_openapi_validation": false,
+            "disable_webhooks": false,
+            "force_update": false,
+            "id": "grafana",
+            "keyring": null,
+            "lint": false,
+            "manifest": null,
+            "max_history": 0,
+            "metadata": {
+              "app_version": "9.5.5",
+              "chart": "grafana",
+              "first_deployed": 1765331677,
+              "last_deployed": 1765331677,
+              "name": "grafana",
+              "namespace": "monitoring",
+              "notes": "1. Get your 'admin' user password by running:\n\n   kubectl get secret --namespace monitoring grafana -o jsonpath=\"{.data.admin-password}\" | base64 --decode ; echo\n\n\n2. The Grafana server can be accessed via port 80 on the following DNS name from within your cluster:\n\n   grafana.monitoring.svc.cluster.local\n\n   Get the Grafana URL to visit by running these commands in the same shell:\n     export POD_NAME=$(kubectl get pods --namespace monitoring -l \"app.kubernetes.io/name=grafana,app.kubernetes.io/instance=grafana\" -o jsonpath=\"{.items[0].metadata.name}\")\n     kubectl --namespace monitoring port-forward $POD_NAME 3000\n\n3. Login with the password from step 1 and the username: admin\n#################################################################################\n######   WARNING: Persistence is disabled!!! You will lose your data when   #####\n######            the Grafana pod is terminated.                            #####\n#################################################################################\n",
+              "revision": 1,
+              "values": "{\"adminPassword\":\"\",\"adminUser\":\"admin\",\"persistence\":{\"enabled\":false},\"sidecar\":{\"dashboards\":{\"enabled\":true,\"folder\":\"/var/lib/grafana/dashboards\",\"label\":\"grafana_dashboard\"},\"datasources\":{\"enabled\":true}}}",
+              "version": "6.57.4"
+            },
+            "name": "grafana",
+            "namespace": "monitoring",
+            "pass_credentials": false,
+            "postrender": null,
+            "recreate_pods": false,
+            "render_subchart_notes": true,
+            "replace": false,
+            "repository": "https://grafana.github.io/helm-charts",
+            "repository_ca_file": null,
+            "repository_cert_file": null,
+            "repository_key_file": null,
+            "repository_password": null,
+            "repository_username": null,
+            "reset_values": false,
+            "reuse_values": false,
+            "set": null,
+            "set_list": null,
+            "set_sensitive": null,
+            "set_wo": null,
+            "set_wo_revision": null,
+            "skip_crds": false,
+            "status": "deployed",
+            "timeout": 300,
+            "values": [
+              "# Grafana Helm release user values\nadminUser: admin\nadminPassword: \"\" # set via Kubernetes secret or external store\npersistence:\n  enabled: false\nsidecar:\n  dashboards:\n    enabled: true\n    label: grafana_dashboard\n    folder: /var/lib/grafana/dashboards\n  datasources:\n    enabled: true\n"
+            ],
+            "verify": false,
+            "version": "6.57.4",
+            "wait": true,
+            "wait_for_jobs": false
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "repository_password"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "identity": {
+            "namespace": "monitoring",
+            "release_name": "grafana"
+          },
+          "dependencies": [
+            "data.aws_eks_cluster.cluster",
+            "data.aws_eks_cluster_auth.cluster",
+            "module.eks.aws_eks_cluster.gpu_e2e",
+            "module.eks.data.aws_eks_cluster.main",
+            "module.eks.data.aws_eks_cluster_auth.main",
+            "module.eks.kubernetes_config_map.aws_auth",
+            "module.iam.aws_iam_role.eks_cluster_role",
+            "module.iam.aws_iam_role.eks_nodegroup_role",
+            "module.iam.data.aws_iam_policy_document.eks_node_assume",
+            "module.monitoring.helm_release.prometheus",
+            "module.vpc.aws_subnet.private_a",
+            "module.vpc.aws_subnet.private_b",
+            "module.vpc.aws_vpc.gpu_e2e"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.monitoring",
+      "mode": "managed",
+      "type": "helm_release",
+      "name": "nvidia_dcgm",
+      "provider": "provider[\"registry.terraform.io/hashicorp/helm\"]",
+      "instances": [
+        {
+          "schema_version": 2,
+          "attributes": {
+            "atomic": false,
+            "chart": "dcgm-exporter",
+            "cleanup_on_fail": false,
+            "create_namespace": false,
+            "dependency_update": false,
+            "description": null,
+            "devel": null,
+            "disable_crd_hooks": false,
+            "disable_openapi_validation": false,
+            "disable_webhooks": false,
+            "force_update": false,
+            "id": "dcgm-exporter",
+            "keyring": null,
+            "lint": false,
+            "manifest": null,
+            "max_history": 0,
+            "metadata": {
+              "app_version": "4.6.0",
+              "chart": "dcgm-exporter",
+              "first_deployed": 1765331698,
+              "last_deployed": 1765331698,
+              "name": "dcgm-exporter",
+              "namespace": "default",
+              "notes": "1. Get the application URL by running these commands:\n  export POD_NAME=$(kubectl get pods -n default -l \"app.kubernetes.io/name=dcgm-exporter,app.kubernetes.io/instance=dcgm-exporter\" -o jsonpath=\"{.items[0].metadata.name}\")\n  kubectl -n default port-forward $POD_NAME 8080:9400 \u0026\n  echo \"Visit http://127.0.0.1:8080/metrics to use your application\"\n",
+              "revision": 1,
+              "values": "{\"serviceMonitor\":{\"enabled\":true}}",
+              "version": "4.6.0"
+            },
+            "name": "dcgm-exporter",
+            "namespace": "default",
+            "pass_credentials": false,
+            "postrender": null,
+            "recreate_pods": false,
+            "render_subchart_notes": true,
+            "replace": false,
+            "repository": "https://nvidia.github.io/dcgm-exporter/helm-charts/",
+            "repository_ca_file": null,
+            "repository_cert_file": null,
+            "repository_key_file": null,
+            "repository_password": null,
+            "repository_username": null,
+            "reset_values": false,
+            "reuse_values": false,
+            "set": [
+              {
+                "name": "serviceMonitor.enabled",
+                "type": "",
+                "value": "true"
+              }
+            ],
+            "set_list": null,
+            "set_sensitive": null,
+            "set_wo": null,
+            "set_wo_revision": null,
+            "skip_crds": false,
+            "status": "deployed",
+            "timeout": 300,
+            "values": null,
+            "verify": false,
+            "version": "4.6.0",
+            "wait": true,
+            "wait_for_jobs": false
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "repository_password"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "identity": {
+            "namespace": "default",
+            "release_name": "dcgm-exporter"
+          },
+          "dependencies": [
+            "data.aws_eks_cluster.cluster",
+            "data.aws_eks_cluster_auth.cluster",
+            "module.eks.aws_eks_cluster.gpu_e2e",
+            "module.eks.data.aws_eks_cluster.main",
+            "module.eks.data.aws_eks_cluster_auth.main",
+            "module.eks.kubernetes_config_map.aws_auth",
+            "module.iam.aws_iam_role.eks_cluster_role",
+            "module.iam.aws_iam_role.eks_nodegroup_role",
+            "module.iam.data.aws_iam_policy_document.eks_node_assume",
+            "module.monitoring.helm_release.grafana",
+            "module.monitoring.helm_release.prometheus",
+            "module.vpc.aws_subnet.private_a",
+            "module.vpc.aws_subnet.private_b",
+            "module.vpc.aws_vpc.gpu_e2e"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.monitoring",
+      "mode": "managed",
+      "type": "helm_release",
+      "name": "prometheus",
+      "provider": "provider[\"registry.terraform.io/hashicorp/helm\"]",
+      "instances": [
+        {
+          "schema_version": 2,
+          "attributes": {
+            "atomic": false,
+            "chart": "kube-prometheus-stack",
+            "cleanup_on_fail": false,
+            "create_namespace": false,
+            "dependency_update": false,
+            "description": null,
+            "devel": null,
+            "disable_crd_hooks": false,
+            "disable_openapi_validation": false,
+            "disable_webhooks": false,
+            "force_update": false,
+            "id": "kube-prometheus-stack",
+            "keyring": null,
+            "lint": false,
+            "manifest": null,
+            "max_history": 0,
+            "metadata": {
+              "app_version": "v0.75.0",
+              "chart": "kube-prometheus-stack",
+              "first_deployed": 1765331503,
+              "last_deployed": 1765331503,
+              "name": "kube-prometheus-stack",
+              "namespace": "monitoring",
+              "notes": "1. Get your 'admin' user password by running:\n\n   kubectl get secret --namespace monitoring kube-prometheus-stack-grafana -o jsonpath=\"{.data.admin-password}\" | base64 --decode ; echo\n\n\n2. The Grafana server can be accessed via port 80 on the following DNS name from within your cluster:\n\n   kube-prometheus-stack-grafana.monitoring.svc.cluster.local\n\n   Get the Grafana URL to visit by running these commands in the same shell:\n     export POD_NAME=$(kubectl get pods --namespace monitoring -l \"app.kubernetes.io/name=grafana,app.kubernetes.io/instance=kube-prometheus-stack\" -o jsonpath=\"{.items[0].metadata.name}\")\n     kubectl --namespace monitoring port-forward $POD_NAME 3000\n\n3. Login with the password from step 1 and the username: admin\n#################################################################################\n######   WARNING: Persistence is disabled!!! You will lose your data when   #####\n######            the Grafana pod is terminated.                            #####\n#################################################################################\n\n1. Get the application URL by running these commands:\n  export POD_NAME=$(kubectl get pods --namespace monitoring -l \"app.kubernetes.io/name=prometheus-node-exporter,app.kubernetes.io/instance=kube-prometheus-stack\" -o jsonpath=\"{.items[0].metadata.name}\")\n  echo \"Visit http://127.0.0.1:9100 to use your application\"\n  kubectl port-forward --namespace monitoring $POD_NAME 9100\nkube-prometheus-stack has been installed. Check its status by running:\n  kubectl --namespace monitoring get pods -l \"release=kube-prometheus-stack\"\n\nVisit https://github.com/prometheus-operator/kube-prometheus for instructions on how to create \u0026 configure Alertmanager and Prometheus instances using the Operator.\n\nkube-state-metrics is a simple service that listens to the Kubernetes API server and generates metrics about the state of the objects.\nThe exposed metrics can be found here:\nhttps://github.com/kubernetes/kube-state-metrics/blob/master/docs/README.md#exposed-metrics\n\nThe metrics are exported on the HTTP endpoint /metrics on the listening port.\nIn your case, kube-prometheus-stack-kube-state-metrics.monitoring.svc.cluster.local:8080/metrics\n\nThey are served either as plaintext or protobuf depending on the Accept header.\nThey are designed to be consumed either by Prometheus itself or by a scraper that is compatible with scraping a Prometheus client endpoint.\n",
+              "revision": 1,
+              "values": "{\"prometheusRule\":{\"enabled\":true,\"groups\":[{\"name\":\"triton-gpu.rules\",\"rules\":[{\"alert\":\"GPUHighUtilization\",\"annotations\":{\"description\":\"GPU \\u003e 85% for more than 2 minutes\",\"summary\":\"High GPU Utilization on {{ $labels.instance }}\"},\"expr\":\"avg(nvidia_gpu_utilization) by (instance) \\u003e 85\",\"for\":\"2m\",\"labels\":{\"severity\":\"warning\"}},{\"alert\":\"GPUMemoryHigh\",\"annotations\":{\"description\":\"GPU memory \\u003e 85%\",\"summary\":\"High GPU Memory Usage\"},\"expr\":\"avg(nvidia_gpu_memory_used_bytes / nvidia_gpu_memory_total_bytes * 100) by (instance) \\u003e 85\",\"for\":\"2m\",\"labels\":{\"severity\":\"warning\"}},{\"alert\":\"TritonHighLatency\",\"annotations\":{\"description\":\"Triton p95 latency greater than 1 second\",\"summary\":\"Triton p95 latency \\u003e 1s\"},\"expr\":\"histogram_quantile(0.95, sum(rate(triton_inference_request_duration_seconds_bucket[2m])) by (le)) \\u003e 1\",\"for\":\"2m\",\"labels\":{\"severity\":\"critical\"}},{\"alert\":\"TritonUnavailable\",\"annotations\":{\"description\":\"Prometheus has no 'up' metric for Triton\",\"summary\":\"Triton is not reachable\"},\"expr\":\"absent(up{job=\\\"triton\\\"})\",\"for\":\"1m\",\"labels\":{\"severity\":\"critical\"}},{\"alert\":\"TritonOOMOccurred\",\"annotations\":{\"description\":\"At least one container OOMKilled in the last 5 minutes\",\"summary\":\"OOMKilled occurred on pod\"},\"expr\":\"increase(kube_pod_container_status_terminated_reason{reason=\\\"OOMKilled\\\"}[5m]) \\u003e 0\",\"for\":\"1m\",\"labels\":{\"severity\":\"critical\"}}]}]}}",
+              "version": "61.2.0"
+            },
+            "name": "kube-prometheus-stack",
+            "namespace": "monitoring",
+            "pass_credentials": false,
+            "postrender": null,
+            "recreate_pods": false,
+            "render_subchart_notes": true,
+            "replace": false,
+            "repository": "https://prometheus-community.github.io/helm-charts",
+            "repository_ca_file": null,
+            "repository_cert_file": null,
+            "repository_key_file": null,
+            "repository_password": null,
+            "repository_username": null,
+            "reset_values": false,
+            "reuse_values": false,
+            "set": null,
+            "set_list": null,
+            "set_sensitive": null,
+            "set_wo": null,
+            "set_wo_revision": null,
+            "skip_crds": false,
+            "status": "deployed",
+            "timeout": 600,
+            "values": [
+              "# PrometheusRules declaratively defined for kube-prometheus-stack\nprometheusRule:\n  enabled: true\n  groups:\n    - name: triton-gpu.rules\n      rules:\n        - alert: GPUHighUtilization\n          expr: avg(nvidia_gpu_utilization) by (instance) \u003e 85\n          for: 2m\n          labels:\n            severity: warning\n          annotations:\n            summary: \"High GPU Utilization on {{ $labels.instance }}\"\n            description: \"GPU \u003e 85% for more than 2 minutes\"\n\n        - alert: GPUMemoryHigh\n          expr: avg(nvidia_gpu_memory_used_bytes / nvidia_gpu_memory_total_bytes * 100) by (instance) \u003e 85\n          for: 2m\n          labels:\n            severity: warning\n          annotations:\n            summary: \"High GPU Memory Usage\"\n            description: \"GPU memory \u003e 85%\"\n\n        - alert: TritonHighLatency\n          expr: histogram_quantile(0.95, sum(rate(triton_inference_request_duration_seconds_bucket[2m])) by (le)) \u003e 1\n          for: 2m\n          labels:\n            severity: critical\n          annotations:\n            summary: \"Triton p95 latency \u003e 1s\"\n            description: \"Triton p95 latency greater than 1 second\"\n\n        - alert: TritonUnavailable\n          expr: absent(up{job=\"triton\"})\n          for: 1m\n          labels:\n            severity: critical\n          annotations:\n            summary: \"Triton is not reachable\"\n            description: \"Prometheus has no 'up' metric for Triton\"\n\n        - alert: TritonOOMOccurred\n          expr: increase(kube_pod_container_status_terminated_reason{reason=\"OOMKilled\"}[5m]) \u003e 0\n          for: 1m\n          labels:\n            severity: critical\n          annotations:\n            summary: \"OOMKilled occurred on pod\"\n            description: \"At least one container OOMKilled in the last 5 minutes\"\n"
+            ],
+            "verify": false,
+            "version": "61.2.0",
+            "wait": true,
+            "wait_for_jobs": false
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "repository_password"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "identity": {
+            "namespace": "monitoring",
+            "release_name": "kube-prometheus-stack"
+          },
+          "dependencies": [
+            "data.aws_eks_cluster.cluster",
+            "data.aws_eks_cluster_auth.cluster",
+            "module.eks.aws_eks_cluster.gpu_e2e",
+            "module.eks.data.aws_eks_cluster.main",
+            "module.eks.data.aws_eks_cluster_auth.main",
+            "module.eks.kubernetes_config_map.aws_auth",
+            "module.iam.aws_iam_role.eks_cluster_role",
+            "module.iam.aws_iam_role.eks_nodegroup_role",
+            "module.iam.data.aws_iam_policy_document.eks_node_assume",
+            "module.vpc.aws_subnet.private_a",
+            "module.vpc.aws_subnet.private_b",
+            "module.vpc.aws_vpc.gpu_e2e"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.monitoring",
+      "mode": "managed",
+      "type": "kubernetes_config_map",
+      "name": "grafana_dashboards",
+      "provider": "provider[\"registry.terraform.io/hashicorp/kubernetes\"].eks",
+      "instances": [
+        {
+          "index_key": "gpu-dashboard.json",
+          "schema_version": 0,
+          "attributes": {
+            "binary_data": {},
+            "data": {
+              "dashboard": ""
+            },
+            "id": "monitoring/gpu-dashboard",
+            "immutable": false,
+            "metadata": [
+              {
+                "annotations": {},
+                "generate_name": "",
+                "generation": 0,
+                "labels": {
+                  "grafana_dashboard": "1"
+                },
+                "name": "gpu-dashboard",
+                "namespace": "monitoring",
+                "resource_version": "1692",
+                "uid": "8ae7e1b2-cfca-4a63-8495-198a9500ea8e"
+              }
+            ]
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 1,
+          "identity": {
+            "api_version": "v1",
+            "kind": "ConfigMap",
+            "name": "gpu-dashboard",
+            "namespace": "monitoring"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "data.aws_eks_cluster.cluster",
+            "data.aws_eks_cluster_auth.cluster",
+            "module.eks.aws_eks_cluster.gpu_e2e",
+            "module.eks.data.aws_eks_cluster.main",
+            "module.eks.data.aws_eks_cluster_auth.main",
+            "module.eks.kubernetes_config_map.aws_auth",
+            "module.iam.aws_iam_role.eks_cluster_role",
+            "module.iam.aws_iam_role.eks_nodegroup_role",
+            "module.iam.data.aws_iam_policy_document.eks_node_assume",
+            "module.monitoring.helm_release.grafana",
+            "module.monitoring.helm_release.prometheus",
+            "module.vpc.aws_subnet.private_a",
+            "module.vpc.aws_subnet.private_b",
+            "module.vpc.aws_vpc.gpu_e2e"
+          ]
+        },
+        {
+          "index_key": "node-dashboard.json",
+          "schema_version": 0,
+          "attributes": {
+            "binary_data": {},
+            "data": {
+              "dashboard": ""
+            },
+            "id": "monitoring/node-dashboard",
+            "immutable": false,
+            "metadata": [
+              {
+                "annotations": {},
+                "generate_name": "",
+                "generation": 0,
+                "labels": {
+                  "grafana_dashboard": "1"
+                },
+                "name": "node-dashboard",
+                "namespace": "monitoring",
+                "resource_version": "1693",
+                "uid": "dbcc2eeb-af47-42e7-90fc-85dbca9bd8a3"
+              }
+            ]
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 1,
+          "identity": {
+            "api_version": "v1",
+            "kind": "ConfigMap",
+            "name": "node-dashboard",
+            "namespace": "monitoring"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "data.aws_eks_cluster.cluster",
+            "data.aws_eks_cluster_auth.cluster",
+            "module.eks.aws_eks_cluster.gpu_e2e",
+            "module.eks.data.aws_eks_cluster.main",
+            "module.eks.data.aws_eks_cluster_auth.main",
+            "module.eks.kubernetes_config_map.aws_auth",
+            "module.iam.aws_iam_role.eks_cluster_role",
+            "module.iam.aws_iam_role.eks_nodegroup_role",
+            "module.iam.data.aws_iam_policy_document.eks_node_assume",
+            "module.monitoring.helm_release.grafana",
+            "module.monitoring.helm_release.prometheus",
+            "module.vpc.aws_subnet.private_a",
+            "module.vpc.aws_subnet.private_b",
+            "module.vpc.aws_vpc.gpu_e2e"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.monitoring",
+      "mode": "managed",
+      "type": "kubernetes_namespace",
+      "name": "monitoring_ns",
+      "provider": "provider[\"registry.terraform.io/hashicorp/kubernetes\"].eks",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "monitoring",
+            "metadata": [
+              {
+                "annotations": {},
+                "generate_name": "",
+                "generation": 0,
+                "labels": {},
+                "name": "monitoring",
+                "resource_version": "580",
+                "uid": "fa6b6680-eb38-4808-bc21-37c3b03cbe33"
+              }
+            ],
+            "timeouts": null,
+            "wait_for_default_service_account": false
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 1,
+          "identity": {
+            "api_version": "v1",
+            "kind": "Namespace",
+            "name": "monitoring"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjozMDAwMDAwMDAwMDB9fQ==",
+          "dependencies": [
+            "data.aws_eks_cluster.cluster",
+            "data.aws_eks_cluster_auth.cluster",
+            "module.eks.aws_eks_cluster.gpu_e2e",
+            "module.eks.data.aws_eks_cluster.main",
+            "module.eks.data.aws_eks_cluster_auth.main",
+            "module.eks.kubernetes_config_map.aws_auth",
+            "module.iam.aws_iam_role.eks_cluster_role",
+            "module.iam.aws_iam_role.eks_nodegroup_role",
+            "module.iam.data.aws_iam_policy_document.eks_node_assume",
+            "module.vpc.aws_subnet.private_a",
+            "module.vpc.aws_subnet.private_b",
+            "module.vpc.aws_vpc.gpu_e2e"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.monitoring",
+      "mode": "managed",
+      "type": "kubernetes_secret",
+      "name": "alertmanager",
+      "provider": "provider[\"registry.terraform.io/hashicorp/kubernetes\"].eks",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "binary_data": null,
+            "binary_data_wo": null,
+            "binary_data_wo_revision": null,
+            "data": {
+              "alertmanager.yaml": "YWxlcnRtYW5hZ2VyLWNvbmZpZw=="
+            },
+            "data_wo": null,
+            "data_wo_revision": null,
+            "id": "monitoring/alertmanager-slack",
+            "immutable": false,
+            "metadata": [
+              {
+                "annotations": {},
+                "generate_name": "",
+                "generation": 0,
+                "labels": {},
+                "name": "alertmanager-slack",
+                "namespace": "monitoring",
+                "resource_version": "1567",
+                "uid": "7a2b4c1b-038f-4c70-9317-48411557d93d"
+              }
+            ],
+            "timeouts": null,
+            "type": "Opaque",
+            "wait_for_service_account_token": true
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "binary_data"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "data"
+              }
+            ]
+          ],
+          "identity_schema_version": 1,
+          "identity": {
+            "api_version": "v1",
+            "kind": "Secret",
+            "name": "alertmanager-slack",
+            "namespace": "monitoring"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMH19",
+          "dependencies": [
+            "data.aws_eks_cluster.cluster",
+            "data.aws_eks_cluster_auth.cluster",
+            "module.eks.aws_eks_cluster.gpu_e2e",
+            "module.eks.data.aws_eks_cluster.main",
+            "module.eks.data.aws_eks_cluster_auth.main",
+            "module.eks.kubernetes_config_map.aws_auth",
+            "module.iam.aws_iam_role.eks_cluster_role",
+            "module.iam.aws_iam_role.eks_nodegroup_role",
+            "module.iam.data.aws_iam_policy_document.eks_node_assume",
+            "module.monitoring.helm_release.prometheus",
+            "module.vpc.aws_subnet.private_a",
+            "module.vpc.aws_subnet.private_b",
+            "module.vpc.aws_vpc.gpu_e2e"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.nvidia_plugin",
+      "mode": "managed",
+      "type": "helm_release",
+      "name": "nvidia_device_plugin",
+      "provider": "provider[\"registry.terraform.io/hashicorp/helm\"]",
+      "instances": [
+        {
+          "schema_version": 2,
+          "attributes": {
+            "atomic": false,
+            "chart": "nvidia-device-plugin",
+            "cleanup_on_fail": false,
+            "create_namespace": false,
+            "dependency_update": false,
+            "description": null,
+            "devel": null,
+            "disable_crd_hooks": false,
+            "disable_openapi_validation": false,
+            "disable_webhooks": false,
+            "force_update": false,
+            "id": "nvidia-device-plugin",
+            "keyring": null,
+            "lint": false,
+            "manifest": null,
+            "max_history": 0,
+            "metadata": {
+              "app_version": "0.17.1",
+              "chart": "nvidia-device-plugin",
+              "first_deployed": 1765331493,
+              "last_deployed": 1765331493,
+              "name": "nvidia-device-plugin",
+              "namespace": "kube-system",
+              "notes": "",
+              "revision": 1,
+              "values": "{\"nodeSelector\":{\"accelerator\":\"nvidia\"},\"tolerations\":[{\"effect\":\"NoSchedule\",\"key\":\"gpu\",\"operator\":\"Exists\"}]}",
+              "version": "0.17.1"
+            },
+            "name": "nvidia-device-plugin",
+            "namespace": "kube-system",
+            "pass_credentials": false,
+            "postrender": null,
+            "recreate_pods": false,
+            "render_subchart_notes": true,
+            "replace": false,
+            "repository": "https://nvidia.github.io/k8s-device-plugin",
+            "repository_ca_file": null,
+            "repository_cert_file": null,
+            "repository_key_file": null,
+            "repository_password": null,
+            "repository_username": null,
+            "reset_values": false,
+            "reuse_values": false,
+            "set": null,
+            "set_list": null,
+            "set_sensitive": null,
+            "set_wo": null,
+            "set_wo_revision": null,
+            "skip_crds": false,
+            "status": "deployed",
+            "timeout": 300,
+            "values": [
+              "\"nodeSelector\":\n  \"accelerator\": \"nvidia\"\n\"tolerations\":\n- \"effect\": \"NoSchedule\"\n  \"key\": \"gpu\"\n  \"operator\": \"Exists\"\n"
+            ],
+            "verify": false,
+            "version": "0.17.1",
+            "wait": true,
+            "wait_for_jobs": false
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "repository_password"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "identity": {
+            "namespace": "kube-system",
+            "release_name": "nvidia-device-plugin"
+          },
+          "dependencies": [
+            "data.aws_eks_cluster.cluster",
+            "data.aws_eks_cluster_auth.cluster",
+            "module.eks.aws_eks_cluster.gpu_e2e",
+            "module.eks.data.aws_eks_cluster.main",
+            "module.eks.data.aws_eks_cluster_auth.main",
+            "module.eks.kubernetes_config_map.aws_auth",
+            "module.iam.aws_iam_role.eks_cluster_role",
+            "module.iam.aws_iam_role.eks_nodegroup_role",
+            "module.iam.data.aws_iam_policy_document.eks_node_assume",
+            "module.vpc.aws_subnet.private_a",
+            "module.vpc.aws_subnet.private_b",
+            "module.vpc.aws_vpc.gpu_e2e"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.vpc",
+      "mode": "managed",
+      "type": "aws_eip",
+      "name": "nat",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address": null,
+            "allocation_id": "eipalloc-0cadb12eb3df62e64",
+            "arn": "arn:aws:ec2:us-east-1:478253497479:elastic-ip/eipalloc-0cadb12eb3df62e64",
+            "associate_with_private_ip": null,
+            "association_id": "eipassoc-0f4d179866d65b10d",
+            "carrier_ip": "",
+            "customer_owned_ip": "",
+            "customer_owned_ipv4_pool": "",
+            "domain": "vpc",
+            "id": "eipalloc-0cadb12eb3df62e64",
+            "instance": "",
+            "ipam_pool_id": null,
+            "network_border_group": "us-east-1",
+            "network_interface": "eni-0940cdaf214af8c4d",
+            "private_dns": "ip-10-0-1-65.ec2.internal",
+            "private_ip": "10.0.1.65",
+            "ptr_record": "",
+            "public_dns": "ec2-18-210-77-233.compute-1.amazonaws.com",
+            "public_ip": "18.210.77.233",
+            "public_ipv4_pool": "amazon",
+            "region": "us-east-1",
+            "tags": {
+              "Name": "nat-eip"
+            },
+            "tags_all": {
+              "Name": "nat-eip"
+            },
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxODAwMDAwMDAwMDAsInJlYWQiOjkwMDAwMDAwMDAwMCwidXBkYXRlIjozMDAwMDAwMDAwMDB9fQ=="
+        }
+      ]
+    },
+    {
+      "module": "module.vpc",
+      "mode": "managed",
+      "type": "aws_internet_gateway",
+      "name": "gw",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:478253497479:internet-gateway/igw-09d88b61d5fd686cd",
+            "id": "igw-09d88b61d5fd686cd",
+            "owner_id": "478253497479",
+            "region": "us-east-1",
+            "tags": {
+              "Name": "triton-mlops-igw"
+            },
+            "tags_all": {
+              "Name": "triton-mlops-igw"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-0817b1b310e7ffc4c"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.vpc.aws_vpc.gpu_e2e"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.vpc",
+      "mode": "managed",
+      "type": "aws_nat_gateway",
+      "name": "nat_gw_a",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "allocation_id": "eipalloc-0cadb12eb3df62e64",
+            "association_id": "eipassoc-0f4d179866d65b10d",
+            "auto_provision_zones": null,
+            "auto_scaling_ips": null,
+            "availability_mode": "zonal",
+            "availability_zone_address": [],
+            "connectivity_type": "public",
+            "id": "nat-0e590e63b7fed4d2d",
+            "network_interface_id": "eni-0940cdaf214af8c4d",
+            "private_ip": "10.0.1.65",
+            "public_ip": "18.210.77.233",
+            "region": "us-east-1",
+            "regional_nat_gateway_address": [],
+            "regional_nat_gateway_auto_mode": null,
+            "route_table_id": null,
+            "secondary_allocation_ids": [],
+            "secondary_private_ip_address_count": 0,
+            "secondary_private_ip_addresses": [],
+            "subnet_id": "subnet-01d6369a5978f9e7e",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null,
+            "vpc_id": "vpc-0817b1b310e7ffc4c"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTgwMDAwMDAwMDAwMCwidXBkYXRlIjo2MDAwMDAwMDAwMDB9fQ==",
+          "dependencies": [
+            "module.vpc.aws_eip.nat",
+            "module.vpc.aws_subnet.public_a",
+            "module.vpc.aws_vpc.gpu_e2e"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.vpc",
+      "mode": "managed",
+      "type": "aws_route_table",
+      "name": "private",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:478253497479:route-table/rtb-0d527e1bec2f9e7b2",
+            "id": "rtb-0d527e1bec2f9e7b2",
+            "owner_id": "478253497479",
+            "propagating_vgws": [],
+            "region": "us-east-1",
+            "route": [
+              {
+                "carrier_gateway_id": "",
+                "cidr_block": "0.0.0.0/0",
+                "core_network_arn": "",
+                "destination_prefix_list_id": "",
+                "egress_only_gateway_id": "",
+                "gateway_id": "",
+                "ipv6_cidr_block": "",
+                "local_gateway_id": "",
+                "nat_gateway_id": "nat-0e590e63b7fed4d2d",
+                "network_interface_id": "",
+                "transit_gateway_id": "",
+                "vpc_endpoint_id": "",
+                "vpc_peering_connection_id": ""
+              }
+            ],
+            "tags": {
+              "Name": "triton-mlops-private-rt"
+            },
+            "tags_all": {
+              "Name": "triton-mlops-private-rt"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-0817b1b310e7ffc4c"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "id": "rtb-0d527e1bec2f9e7b2",
+            "region": "us-east-1"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjEyMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.vpc.aws_eip.nat",
+            "module.vpc.aws_nat_gateway.nat_gw_a",
+            "module.vpc.aws_subnet.public_a",
+            "module.vpc.aws_vpc.gpu_e2e"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.vpc",
+      "mode": "managed",
+      "type": "aws_route_table",
+      "name": "public",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:478253497479:route-table/rtb-024edd9f19c5b9117",
+            "id": "rtb-024edd9f19c5b9117",
+            "owner_id": "478253497479",
+            "propagating_vgws": [],
+            "region": "us-east-1",
+            "route": [
+              {
+                "carrier_gateway_id": "",
+                "cidr_block": "0.0.0.0/0",
+                "core_network_arn": "",
+                "destination_prefix_list_id": "",
+                "egress_only_gateway_id": "",
+                "gateway_id": "igw-09d88b61d5fd686cd",
+                "ipv6_cidr_block": "",
+                "local_gateway_id": "",
+                "nat_gateway_id": "",
+                "network_interface_id": "",
+                "transit_gateway_id": "",
+                "vpc_endpoint_id": "",
+                "vpc_peering_connection_id": ""
+              }
+            ],
+            "tags": {
+              "Name": "triton-mlops-public-rt"
+            },
+            "tags_all": {
+              "Name": "triton-mlops-public-rt"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-0817b1b310e7ffc4c"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "id": "rtb-024edd9f19c5b9117",
+            "region": "us-east-1"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjEyMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.vpc.aws_internet_gateway.gw",
+            "module.vpc.aws_vpc.gpu_e2e"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.vpc",
+      "mode": "managed",
+      "type": "aws_route_table_association",
+      "name": "private_a",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "gateway_id": "",
+            "id": "rtbassoc-0e331b9a691d361fd",
+            "region": "us-east-1",
+            "route_table_id": "rtb-0d527e1bec2f9e7b2",
+            "subnet_id": "subnet-0c64c62aac43a092d",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjEyMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.vpc.aws_eip.nat",
+            "module.vpc.aws_nat_gateway.nat_gw_a",
+            "module.vpc.aws_route_table.private",
+            "module.vpc.aws_subnet.private_a",
+            "module.vpc.aws_subnet.public_a",
+            "module.vpc.aws_vpc.gpu_e2e"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.vpc",
+      "mode": "managed",
+      "type": "aws_route_table_association",
+      "name": "private_b",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "gateway_id": "",
+            "id": "rtbassoc-0267200083c5b5ca1",
+            "region": "us-east-1",
+            "route_table_id": "rtb-0d527e1bec2f9e7b2",
+            "subnet_id": "subnet-02312a6c371b62eed",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjEyMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.vpc.aws_eip.nat",
+            "module.vpc.aws_nat_gateway.nat_gw_a",
+            "module.vpc.aws_route_table.private",
+            "module.vpc.aws_subnet.private_b",
+            "module.vpc.aws_subnet.public_a",
+            "module.vpc.aws_vpc.gpu_e2e"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.vpc",
+      "mode": "managed",
+      "type": "aws_route_table_association",
+      "name": "public_a",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "gateway_id": "",
+            "id": "rtbassoc-084c2b62cf54e4fa5",
+            "region": "us-east-1",
+            "route_table_id": "rtb-024edd9f19c5b9117",
+            "subnet_id": "subnet-01d6369a5978f9e7e",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjEyMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.vpc.aws_internet_gateway.gw",
+            "module.vpc.aws_route_table.public",
+            "module.vpc.aws_subnet.public_a",
+            "module.vpc.aws_vpc.gpu_e2e"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.vpc",
+      "mode": "managed",
+      "type": "aws_subnet",
+      "name": "private_a",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:478253497479:subnet/subnet-0c64c62aac43a092d",
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "us-east-1a",
+            "availability_zone_id": "use1-az6",
+            "cidr_block": "10.0.2.0/24",
+            "customer_owned_ipv4_pool": "",
+            "enable_dns64": false,
+            "enable_lni_at_device_index": 0,
+            "enable_resource_name_dns_a_record_on_launch": false,
+            "enable_resource_name_dns_aaaa_record_on_launch": false,
+            "id": "subnet-0c64c62aac43a092d",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_association_id": "",
+            "ipv6_native": false,
+            "map_customer_owned_ip_on_launch": false,
+            "map_public_ip_on_launch": false,
+            "outpost_arn": "",
+            "owner_id": "478253497479",
+            "private_dns_hostname_type_on_launch": "ip-name",
+            "region": "us-east-1",
+            "tags": {
+              "Name": "triton-mlops-private-a",
+              "kubernetes.io/cluster/triton-gpu-cluster": "shared",
+              "kubernetes.io/role/internal-elb": "1",
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "tags_all": {
+              "Name": "triton-mlops-private-a",
+              "kubernetes.io/cluster/triton-gpu-cluster": "shared",
+              "kubernetes.io/role/internal-elb": "1",
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-0817b1b310e7ffc4c"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "id": "subnet-0c64c62aac43a092d",
+            "region": "us-east-1"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "module.vpc.aws_vpc.gpu_e2e"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.vpc",
+      "mode": "managed",
+      "type": "aws_subnet",
+      "name": "private_b",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:478253497479:subnet/subnet-02312a6c371b62eed",
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "us-east-1b",
+            "availability_zone_id": "use1-az1",
+            "cidr_block": "10.0.3.0/24",
+            "customer_owned_ipv4_pool": "",
+            "enable_dns64": false,
+            "enable_lni_at_device_index": 0,
+            "enable_resource_name_dns_a_record_on_launch": false,
+            "enable_resource_name_dns_aaaa_record_on_launch": false,
+            "id": "subnet-02312a6c371b62eed",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_association_id": "",
+            "ipv6_native": false,
+            "map_customer_owned_ip_on_launch": false,
+            "map_public_ip_on_launch": false,
+            "outpost_arn": "",
+            "owner_id": "478253497479",
+            "private_dns_hostname_type_on_launch": "ip-name",
+            "region": "us-east-1",
+            "tags": {
+              "Name": "triton-mlops-private-b",
+              "kubernetes.io/cluster/triton-gpu-cluster": "shared",
+              "kubernetes.io/role/internal-elb": "1",
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "tags_all": {
+              "Name": "triton-mlops-private-b",
+              "kubernetes.io/cluster/triton-gpu-cluster": "shared",
+              "kubernetes.io/role/internal-elb": "1",
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-0817b1b310e7ffc4c"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "id": "subnet-02312a6c371b62eed",
+            "region": "us-east-1"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "module.vpc.aws_vpc.gpu_e2e"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.vpc",
+      "mode": "managed",
+      "type": "aws_subnet",
+      "name": "public_a",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:478253497479:subnet/subnet-01d6369a5978f9e7e",
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "us-east-1a",
+            "availability_zone_id": "use1-az6",
+            "cidr_block": "10.0.1.0/24",
+            "customer_owned_ipv4_pool": "",
+            "enable_dns64": false,
+            "enable_lni_at_device_index": 0,
+            "enable_resource_name_dns_a_record_on_launch": false,
+            "enable_resource_name_dns_aaaa_record_on_launch": false,
+            "id": "subnet-01d6369a5978f9e7e",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_association_id": "",
+            "ipv6_native": false,
+            "map_customer_owned_ip_on_launch": false,
+            "map_public_ip_on_launch": true,
+            "outpost_arn": "",
+            "owner_id": "478253497479",
+            "private_dns_hostname_type_on_launch": "ip-name",
+            "region": "us-east-1",
+            "tags": {
+              "Name": "triton-mlops-public-a",
+              "kubernetes.io/cluster/triton-gpu-cluster": "shared",
+              "kubernetes.io/role/elb": "1",
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "tags_all": {
+              "Name": "triton-mlops-public-a",
+              "kubernetes.io/cluster/triton-gpu-cluster": "shared",
+              "kubernetes.io/role/elb": "1",
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-0817b1b310e7ffc4c"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "id": "subnet-01d6369a5978f9e7e",
+            "region": "us-east-1"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "module.vpc.aws_vpc.gpu_e2e"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.vpc",
+      "mode": "managed",
+      "type": "aws_vpc",
+      "name": "gpu_e2e",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:478253497479:vpc/vpc-0817b1b310e7ffc4c",
+            "assign_generated_ipv6_cidr_block": false,
+            "cidr_block": "10.0.0.0/16",
+            "default_network_acl_id": "acl-0f79096fd09a00709",
+            "default_route_table_id": "rtb-0f3ca071a2a6de945",
+            "default_security_group_id": "sg-09932628c670ac602",
+            "dhcp_options_id": "dopt-01240a02c2e543439",
+            "enable_dns_hostnames": true,
+            "enable_dns_support": true,
+            "enable_network_address_usage_metrics": false,
+            "id": "vpc-0817b1b310e7ffc4c",
+            "instance_tenancy": "default",
+            "ipv4_ipam_pool_id": null,
+            "ipv4_netmask_length": null,
+            "ipv6_association_id": "",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_network_border_group": "",
+            "ipv6_ipam_pool_id": "",
+            "ipv6_netmask_length": 0,
+            "main_route_table_id": "rtb-0f3ca071a2a6de945",
+            "owner_id": "478253497479",
+            "region": "us-east-1",
+            "tags": {
+              "Name": "triton-mlops-vpc",
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            },
+            "tags_all": {
+              "Name": "triton-mlops-vpc",
+              "owner": "Nancy",
+              "project": "triton-mlops"
+            }
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "478253497479",
+            "id": "vpc-0817b1b310e7ffc4c",
+            "region": "us-east-1"
+          },
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ=="
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}
