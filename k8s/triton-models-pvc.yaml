@@ -10,4 +10,4 @@ spec:
   resources:
     requests:
       storage: 20Gi
-  storageClassName: gp2
+  storageClassName: gp2-immediate

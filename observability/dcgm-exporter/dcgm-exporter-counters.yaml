@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dcgm-exporter-counters
+  namespace: monitoring
+data:
+  custom-counters.csv: |
+    # Default GPU counters
+    DCGM_FI_DEV_GPU_UTIL
+    DCGM_FI_DEV_FB_USED
+    DCGM_FI_DEV_FB_TOTAL
+    DCGM_FI_DEV_POWER_USAGE
+    # Process-level counters
+    DCGM_FI_PROCESSES

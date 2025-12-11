@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dcgm-exporter
+  namespace: monitoring
+  labels:
+    app: dcgm-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dcgm-exporter
+  template:
+    metadata:
+      labels:
+        app: dcgm-exporter
+    spec:
+      containers:
+      - name: dcgm-exporter
+        image: nvcr.io/nvidia/k8s/dcgm-exporter:3.1.7-2.6.0-ubuntu20.04
+        ports:
+        - name: metrics
+          containerPort: 9400
+        args:
+        - "--collectors=/etc/dcgm-exporter/custom-counters.csv"
+        volumeMounts:
+        - name: counters
+          mountPath: /etc/dcgm-exporter/custom-counters.csv
+          subPath: custom-counters.csv
+      volumes:
+      - name: counters
+        configMap:
+          name: dcgm-exporter-counters
