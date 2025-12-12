@@ -15,12 +15,13 @@ serviceAccount:
 resources:
   limits:
     nvidia.com/gpu: 1
-    ephemeral-storage: "20Gi"
+    ephemeral-storage: 18Gi
     cpu: "3"
     memory: 12Gi
   requests:
     cpu: "2"
     memory: 8Gi
+    ephemeral-storage: 15Gi
 
 nodeSelector:
   accelerator: nvidia

@@ -22,6 +22,10 @@ resource "aws_eks_node_group" "gpu_on_demand" {
     version = "$Latest"
  }
 
+  update_config {
+    max_unavailable = 1
+  }
+
   labels = {
     accelerator = "nvidia"
   }
@@ -30,29 +34,4 @@ resource "aws_eks_node_group" "gpu_on_demand" {
     project = var.project
     owner   = var.owner
   }
-}
-
-# =================================================================
-# launch template for bootstrapping cluster using nodeadm 
-# =============================================================
-resource "aws_launch_template" "gpu_nodes" {
-  name_prefix            = "gpu-node-"
-  update_default_version = true
-
-   key_name = var.ssh_key_name  
-
-
-   metadata_options {
-    http_endpoint = "enabled"
-    http_tokens   = "required"
-  }
-
-  # Nodeadm + cluster bootstrap config
-  user_data = base64encode(
-    templatefile("${path.module}/userdata-nodeadm.yaml", {
-      cluster_name     = var.cluster_name
-      cluster_endpoint = var.cluster_endpoint
-      cluster_ca       = var.cluster_ca
-    })
-  )
 }
