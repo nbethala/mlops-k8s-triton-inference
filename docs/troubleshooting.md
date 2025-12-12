@@ -1,4 +1,5 @@
 # Issue : GFD ( GPU Feature discovery ) 
+
 Pods Not scheduing for GPU workloads
 
 Solution : Via helm update/add the GFD. 
@@ -198,3 +199,76 @@ Events:
   Warning  FailedCreate  6m32s (x19 over 28m)  replicaset-controller  Error creating: pods "triton-5fc797b8f8-" is forbidden: error looking up service account inference/triton-sa: serviceaccount "triton-sa" not found
 
 solution : check service account 
+
+### ==========================================================
+# crashloopbackoff : container crashes/models not mounting 
+### ==========================================================
+
+How to inspect /models : 
+
+Since you can’t exec into a crashing container, use one of these approaches:
+
+Inspect the PVC directly Mount the same PVC into a temporary debug pod:
+
+```
+bash
+kubectl run pvc-debug -n inference --rm -it \
+  --image=amazon/aws-cli:latest \
+  --overrides='{"spec":{"containers":[{"name":"debug","image":"amazon/aws-cli:latest","command":["sh"],"stdin":true,"tty":true,"volumeMounts":[{"mountPath":"/models","name":"model-repo"}]}],"volumes":[{"name":"model-repo","persistentVolumeClaim":{"claimName":"triton-models-pvc"}}]}}'
+→ This gives you a shell with /models mounted, so you can ls /models.
+```
+
+Check PVC binding
+
+```
+bash
+kubectl get pvc -n inference triton-models-pvc
+kubectl describe pvc -n inference triton-models-pvc
+```
+
+→ Confirms whether the claim is bound and what volume it’s attached to.
+
+#### Always validate: 
+
+spin up a temporary debug pod with the PVC mounted to confirm whether your ResNet50 model files are actually present
+
+- PVC contents before deploying Triton.
+
+- Triton exits cleanly if /models is empty or invalid, leading to CrashLoopBackOff.
+
+- Use a debug pod to inspect PVCs instead of trying to exec into a crashing container.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

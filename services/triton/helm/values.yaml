@@ -2,8 +2,13 @@ replicaCount: 1
 
 image:
   repository: "478253497479.dkr.ecr.us-east-1.amazonaws.com/triton"
-  tag: "resnet50"        # use the tag you pushed to ECR
+  tag: "24.01-py3"        # use the tag you pushed to ECR
   pullPolicy: Always     # force fresh pulls
+       
+args:
+  - "--model-repository=/models"
+  - "--model-control-mode=poll"
+  - "--repository-poll-secs=5"   
 
 serviceAccount:
   create: true
