@@ -15,4 +15,9 @@ EOF
 pemfile
 *.pem
 
-.onxx
+# Ignore ONNX models
+*.onnx
+models/
+
+# Ignore Python virtual environments
+onnx-env/
