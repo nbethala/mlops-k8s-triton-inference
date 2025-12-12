@@ -14,3 +14,5 @@ EOF
 
 pemfile
 *.pem
+
+.onxx
