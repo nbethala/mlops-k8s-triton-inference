@@ -6,8 +6,8 @@ metadata:
   namespace: inference
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
+  storageClassName: efs-sc
   resources:
     requests:
-      storage: 20Gi
-  storageClassName: gp2-immediate
+      storage: 5Gi

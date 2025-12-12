@@ -1,23 +1,26 @@
 replicaCount: 1
 
 image:
-  repository: "<ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/triton-infer"
-  tag: "latest"
-  pullPolicy: IfNotPresent
+  repository: "478253497479.dkr.ecr.us-east-1.amazonaws.com/triton"
+  tag: "resnet50"        # use the tag you pushed to ECR
+  pullPolicy: Always     # force fresh pulls
 
 serviceAccount:
   create: true
   name: triton-sa
   annotations: {}
-    # IRSA annotation - filled by Helm upgrade via --set or edit manually
-    # eks.amazonaws.com/role-arn: arn:aws:iam::<ACCOUNT_ID>:role/triton-pod-role
+    # IRSA annotation can be added here if needed
+    # eks.amazonaws.com/role-arn: arn:aws:iam::478253497479:role/triton-pod-role
 
 resources:
   limits:
     nvidia.com/gpu: 1
+    ephemeral-storage: "20Gi"
+    cpu: "3"
+    memory: 12Gi
   requests:
-    cpu: 1000m
-    memory: 2Gi
+    cpu: "2"
+    memory: 8Gi
 
 nodeSelector:
   accelerator: nvidia
@@ -27,11 +30,12 @@ tolerations:
     operator: "Exists"
     effect: "NoSchedule"
 
+# Disable S3 model repo since you’re using EFS
 modelRepo:
   s3:
-    bucket: "<YOUR_MODEL_BUCKET>"
-    prefix: "triton/models"
-    region: "us-east-1"
+    bucket: ""
+    prefix: ""
+    region: ""
 
 ports:
   http: 8000
@@ -40,7 +44,7 @@ ports:
 
 service:
   type: ClusterIP
-  port: 8000
+  port: 8000   # required by schema
 
 metrics:
   enabled: true
@@ -64,8 +68,9 @@ readinessProbe:
   periodSeconds: 10
 
 persistence:
-  enabled: false
-  # if you prefer EFS mount, configure here
+  enabled: true
+  existingClaim: triton-models-pvc   # bind to your PVC
+  mountName: model-repo
   path: /models
 
 extraEnv:

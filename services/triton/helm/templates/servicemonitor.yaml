@@ -10,7 +10,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: triton
+      app: {{ include "triton.name" . }}
   endpoints:
     - port: metrics
       path: /metrics

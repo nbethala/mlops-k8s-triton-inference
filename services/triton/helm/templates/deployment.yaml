@@ -43,9 +43,18 @@ spec:
               {{- toYaml .Values.resources.requests | nindent 14 }}
 
           volumeMounts:
-            - name: model-repo
-              mountPath: /models
+            - name: {{ .Values.persistence.mountName }}
+              mountPath: {{ .Values.persistence.path }}
+
+      volumes:
+        - name: {{ .Values.persistence.mountName }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim }}
 
       initContainers:
         - name: sync-models
-          image: amazon/aws-cli:2.16.19
+          image: amazon/aws-cli:latest
+          command: ["sh", "-c", "echo 'sync models step placeholder'"]
+          volumeMounts:
+            - name: {{ .Values.persistence.mountName }}
+              mountPath: {{ .Values.persistence.path }}

@@ -187,3 +187,14 @@ Affinity rules in the chart that don’t match your node labels.
 - Deploy Triton inference server with GPU resource requests and test readiness (`curl localhost:8000/v2/health/ready`).
 
 
+## Replicaset not creating pods : 
+Conditions:
+  Type             Status  Reason
+  ----             ------  ------
+  ReplicaFailure   True    FailedCreate
+Events:
+  Type     Reason        Age                   From                   Message
+  ----     ------        ----                  ----                   -------
+  Warning  FailedCreate  6m32s (x19 over 28m)  replicaset-controller  Error creating: pods "triton-5fc797b8f8-" is forbidden: error looking up service account inference/triton-sa: serviceaccount "triton-sa" not found
+
+solution : check service account 

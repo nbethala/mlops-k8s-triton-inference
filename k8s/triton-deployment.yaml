@@ -15,21 +15,32 @@ spec:
         app: triton
     spec:
       containers:
-        - name: triton
-          image: 478253497479.dkr.ecr.us-east-1.amazonaws.com/triton:latest
-          imagePullPolicy: Always
-          args: ["tritonserver", "--model-repository=/models"]
-
-          ports:
-            - containerPort: 8000 # HTTP
-            - containerPort: 8001 # gRPC
-            - containerPort: 8002 # Metrics
-
-          volumeMounts:
-            - name: model-repo
-              mountPath: /models
-
+      - name: triton
+        image: 478253497479.dkr.ecr.us-east-1.amazonaws.com/triton:resnet50
+        imagePullPolicy: Always
+        args:
+          - tritonserver
+          - --model-repository=/models
+        ports:
+          - name: http
+            containerPort: 8000
+          - name: grpc
+            containerPort: 8001
+          - name: metrics
+            containerPort: 8002
+        resources:
+          requests:
+            cpu: "2"
+            memory: "8Gi"
+            nvidia.com/gpu: 1
+          limits:
+            cpu: "4"
+            memory: "16Gi"
+            nvidia.com/gpu: 1
+        volumeMounts:
+          - name: model-repo
+            mountPath: /models
       volumes:
-        - name: model-repo
-          persistentVolumeClaim:
-            claimName: triton-models-pvc
+      - name: model-repo
+        persistentVolumeClaim:
+          claimName: triton-models-pvc
