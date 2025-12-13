@@ -1,10 +1,10 @@
 name: "resnet50"
 platform: "onnxruntime_onnx"
-max_batch_size: 8
+max_batch_size: 0
 
 input [
   {
-    name: "data"              # Must match ONNX input tensor name
+    name: "data"              # matches ONNX input
     data_type: TYPE_FP32
     format: FORMAT_NCHW
     dims: [3, 224, 224]
@@ -13,7 +13,7 @@ input [
 
 output [
   {
-    name: "prob"              # Must match ONNX output tensor name
+    name: "resnetv24_dense0_fwd"   # matches ONNX output
     data_type: TYPE_FP32
     dims: [1000]
   }

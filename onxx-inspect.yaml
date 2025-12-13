@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: onnx-inspect
+  namespace: inference
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      volumes:
+        - name: model-repo
+          persistentVolumeClaim:
+            claimName: triton-models-pvc
+      containers:
+        - name: inspect
+          image: python:3.10-slim
+          volumeMounts:
+            - name: model-repo
+              mountPath: /models
+          command:
+            - sh
+            - -c
+            - |
+              pip install --no-cache-dir onnx
+              python - <<'EOF'
+              import onnx
+              m = onnx.load("/models/resnet50/1/resnet50.onnx")
+              print("=== INPUTS ===")
+              for i in m.graph.input:
+                  print(i.name)
+              print("\n=== OUTPUTS ===")
+              for o in m.graph.output:
+                  print(o.name)
+              EOF

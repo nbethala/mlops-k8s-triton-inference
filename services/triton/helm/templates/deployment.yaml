@@ -28,6 +28,8 @@ spec:
         - name: triton
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          args:
+            {{- toYaml .Values.args | nindent 12 }}
           ports:
             - name: http
               containerPort: {{ .Values.ports.http }}
