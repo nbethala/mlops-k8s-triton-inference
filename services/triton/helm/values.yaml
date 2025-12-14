@@ -2,10 +2,11 @@ replicaCount: 1
 
 image:
   repository: "478253497479.dkr.ecr.us-east-1.amazonaws.com/triton"
-  tag: "24.01-py3"        # use the tag you pushed to ECR
-  pullPolicy: Always      # force fresh pulls
+  tag: "24.01-py3"
+  pullPolicy: Always
 
 args:
+  - "tritonserver"
   - "--model-repository=/models"
   - "--model-control-mode=poll"
   - "--repository-poll-secs=5"
@@ -14,24 +15,19 @@ args:
   - "--log-warning=true"
   - "--log-error=true"
 
-
 serviceAccount:
   create: true
   name: triton-sa
   annotations: {}
-    # IRSA annotation can be added here if needed
-    # eks.amazonaws.com/role-arn: arn:aws:iam::478253497479:role/triton-pod-role
 
 resources:
   limits:
     nvidia.com/gpu: 1
-    ephemeral-storage: 18Gi
-    cpu: "2"
-    memory: 10Gi
+    cpu: 1
+    memory: 4Gi
   requests:
-    cpu: "1"
-    memory: 6Gi
-    ephemeral-storage: 15Gi
+    cpu: 0.5
+    memory: 2Gi
 
 nodeSelector:
   accelerator: nvidia
@@ -41,13 +37,6 @@ tolerations:
     operator: "Exists"
     effect: "NoSchedule"
 
-# Disable S3 model repo since you’re using EFS
-modelRepo:
-  s3:
-    bucket: ""
-    prefix: ""
-    region: ""
-
 ports:
   http: 8000
   grpc: 8001
@@ -55,7 +44,7 @@ ports:
 
 service:
   type: ClusterIP
-  port: 8000   # required by schema
+  port: 8000
 
 metrics:
   enabled: true
@@ -80,9 +69,9 @@ readinessProbe:
 
 persistence:
   enabled: true
-  existingClaim: triton-models-pvc   # bind to your PVC
+  existingClaim: triton-models-pvc
   mountName: model-repo
-  path: /models                      # PVC will be mounted here
+  path: /models
 
 extraEnv:
   - name: AWS_REGION

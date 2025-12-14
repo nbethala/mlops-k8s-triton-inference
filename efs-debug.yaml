@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: efs-debug
+  namespace: inference
+spec:
+  containers:
+  - name: debug
+    image: alpine
+    command: ["sleep", "3600"]
+    volumeMounts:
+    - name: model-repo
+      mountPath: /models
+  volumes:
+  - name: model-repo
+    persistentVolumeClaim:
+      claimName: triton-models-pvc

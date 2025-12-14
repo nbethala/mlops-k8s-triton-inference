@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -53,10 +52,4 @@ spec:
           persistentVolumeClaim:
             claimName: {{ .Values.persistence.existingClaim }}
 
-      initContainers:
-        - name: sync-models
-          image: amazon/aws-cli:latest
-          command: ["sh", "-c", "echo 'sync models step placeholder'"]
-          volumeMounts:
-            - name: {{ .Values.persistence.mountName }}
-              mountPath: {{ .Values.persistence.path }}
+      initContainers: []  # No init container

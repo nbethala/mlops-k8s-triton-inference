@@ -1,0 +1,194 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  annotations:
+    deprecated.daemonset.template.generation: "1"
+  creationTimestamp: "2025-12-11T16:05:13Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/name: aws-efs-csi-driver
+  name: efs-csi-node
+  namespace: kube-system
+  resourceVersion: "6512483"
+  uid: 20185a68-b2bf-419a-b457-32c07cb1afb3
+spec:
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: efs-csi-node
+      app.kubernetes.io/instance: aws-efs-csi-driver
+      app.kubernetes.io/name: aws-efs-csi-driver
+  template:
+    metadata:
+      labels:
+        app: efs-csi-node
+        app.kubernetes.io/instance: aws-efs-csi-driver
+        app.kubernetes.io/name: aws-efs-csi-driver
+    spec:
+      tolerations:
+       - operator: Exists        
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: eks.amazonaws.com/compute-type
+                operator: NotIn
+                values:
+                - fargate
+                - hybrid
+      containers:
+      - args:
+        - --endpoint=$(CSI_ENDPOINT)
+        - --logtostderr
+        - --v=2
+        - --vol-metrics-opt-in=false
+        - --vol-metrics-refresh-period=240
+        - --vol-metrics-fs-rate-limit=5
+        - --max-inflight-mount-calls-opt-in=false
+        - --max-inflight-mount-calls=10
+        - --volume-attach-limit-opt-in=false
+        - --volume-attach-limit=20
+        env:
+        - name: CSI_ENDPOINT
+          value: unix:/csi/csi.sock
+        - name: CSI_NODE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: PORT_RANGE_UPPER_BOUND
+          value: "21049"
+        image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/aws-efs-csi-driver:v2.1.15
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 5
+          httpGet:
+            path: /healthz
+            port: healthz
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 2
+          successThreshold: 1
+          timeoutSeconds: 3
+        name: efs-plugin
+        ports:
+        - containerPort: 9809
+          name: healthz
+          protocol: TCP
+        resources: {}
+        securityContext:
+          privileged: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/lib/kubelet
+          mountPropagation: Bidirectional
+          name: kubelet-dir
+        - mountPath: /csi
+          name: plugin-dir
+        - mountPath: /var/run/efs
+          name: efs-state-dir
+        - mountPath: /var/amazon/efs
+          name: efs-utils-config
+        - mountPath: /etc/amazon/efs-legacy
+          name: efs-utils-config-legacy
+      - args:
+        - --csi-address=$(ADDRESS)
+        - --kubelet-registration-path=$(DRIVER_REG_SOCK_PATH)
+        - --v=2
+        env:
+        - name: ADDRESS
+          value: /csi/csi.sock
+        - name: DRIVER_REG_SOCK_PATH
+          value: /var/lib/kubelet/plugins/efs.csi.aws.com/csi.sock
+        - name: KUBE_NODE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/csi-node-driver-registrar:v2.14.0-eksbuild.5
+        imagePullPolicy: IfNotPresent
+        name: csi-driver-registrar
+        resources: {}
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /csi
+          name: plugin-dir
+        - mountPath: /registration
+          name: registration-dir
+      - args:
+        - --csi-address=/csi/csi.sock
+        - --health-port=9809
+        - --v=2
+        image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/livenessprobe:v2.16.0-eksbuild.5
+        imagePullPolicy: IfNotPresent
+        name: liveness-probe
+        resources: {}
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /csi
+          name: plugin-dir
+      dnsPolicy: ClusterFirst
+      hostNetwork: true
+      nodeSelector:
+        kubernetes.io/os: linux
+      priorityClassName: system-node-critical
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        fsGroup: 0
+        runAsGroup: 0
+        runAsNonRoot: false
+        runAsUser: 0
+      serviceAccount: efs-csi-node-sa
+      serviceAccountName: efs-csi-node-sa
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - operator: Exists
+      volumes:
+      - hostPath:
+          path: /var/lib/kubelet
+          type: Directory
+        name: kubelet-dir
+      - hostPath:
+          path: /var/lib/kubelet/plugins/efs.csi.aws.com/
+          type: DirectoryOrCreate
+        name: plugin-dir
+      - hostPath:
+          path: /var/lib/kubelet/plugins_registry/
+          type: Directory
+        name: registration-dir
+      - hostPath:
+          path: /var/run/efs
+          type: DirectoryOrCreate
+        name: efs-state-dir
+      - hostPath:
+          path: /var/amazon/efs
+          type: DirectoryOrCreate
+        name: efs-utils-config
+      - hostPath:
+          path: /etc/amazon/efs
+          type: DirectoryOrCreate
+        name: efs-utils-config-legacy
+  updateStrategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+status:
+  currentNumberScheduled: 1
+  desiredNumberScheduled: 1
+  numberAvailable: 1
+  numberMisscheduled: 0
+  numberReady: 1
+  observedGeneration: 1
+  updatedNumberScheduled: 1
