@@ -1,0 +1,3 @@
+loki:
+  storage:
+    type: filesystem
